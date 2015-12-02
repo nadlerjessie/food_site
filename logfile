@@ -1,0 +1,8 @@
+LOG:  database system was shut down at 2015-12-02 14:02:22 EST
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "project_development" does not exist
+ERROR:  database "project_development" is being accessed by other users
+DETAIL:  There are 2 other sessions using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "project_development"

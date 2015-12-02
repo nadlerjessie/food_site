@@ -54,11 +54,11 @@ ActiveRecord::Schema.define(version: 20151202142955) do
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
     t.integer  "view_count"
-    t.boolean  "public"
+    t.boolean  "public_recipe", default: true
     t.integer  "user_id"
     t.string   "image_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "steps", force: :cascade do |t|
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20151202142955) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.boolean  "public"
+    t.boolean  "public_profile"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
