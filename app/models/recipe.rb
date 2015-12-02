@@ -19,4 +19,7 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :proportions
   has_many :units, through: :proportions
   has_many :steps
+  accepts_nested_attributes_for :steps
 end
+
+
