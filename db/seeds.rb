@@ -15,8 +15,8 @@ Unit.destroy_all
 Favorite.destroy_all
 
 #######################
-users = User.create([{name: 'Jeffers', email: 'clevergirl@jurassicpark.gov', password_digest: 'password', public_profile: true},
-                    {name: 'Allegria', email: 'fluffy@flatironschool.com', password_digest: 'fruitfly', public_profile: true}
+users = User.create([{name: 'Jeffers', email: 'clevergirl@jurassicpark.gov', password: 'password', public_profile: true},
+                    {name: 'Allegria', email: 'fluffy@flatironschool.com', password: 'fruitfly', public_profile: true}
                   ])
 
 #######################
