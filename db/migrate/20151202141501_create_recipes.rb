@@ -5,6 +5,7 @@ class CreateRecipes < ActiveRecord::Migration
       t.integer :view_count
       t.boolean :public
       t.integer :user_id
+      t.string :image_url
 
       t.timestamps null: false
     end
