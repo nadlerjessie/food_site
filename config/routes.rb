@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :searches
   root to: 'users#new'
   get '/login' => 'sessions#new'
   post '/sessions' => 'sessions#create'
