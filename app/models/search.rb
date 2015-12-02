@@ -7,19 +7,15 @@ class Search < ActiveRecord::Base
 
   def self.search_by_user_permissions(search, current_user)
     if current_user
-      Recipe.joins(:ingredients).where("(lower(recipes.name) like ? OR ingredients.name like ? AND public_recipe = ?) OR (lower(recipes.name) like ? OR ingredients.name like ? AND user_id = ?)", search, search, true, search, search, current_user.id).uniq
+      Recipe.joins(:ingredients).where("((lower(recipes.name) like ? OR ingredients.name like ?) AND public_recipe = ?) OR ((lower(recipes.name) like ? OR ingredients.name like ?) AND user_id = ?)", search, search, true, search, search, current_user.id).uniq
     else
       Recipe.joins(:ingredients).where("lower(recipes.name) like ? OR ingredients.name like ? AND public_recipe = ?", search, search, true).uniq
     end
   end
 
-
-
 end
 
-#
-
-#search by ingredient, category, by user who created if
+#category, by user who created if
 
 
 
