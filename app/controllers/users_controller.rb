@@ -7,11 +7,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    binding.pry
     if @user.save
       redirect_to login_path, :notice => "Now please login"
     else
-      binding.pry
       render :new
     end
   end
