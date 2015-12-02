@@ -15,8 +15,8 @@ Unit.destroy_all
 Favorite.destroy_all
 
 #######################
-users = User.create([{name: 'Jeffers', email: 'clevergirl@jurassicpark.gov', password_digest: 'password'},
-                    {name: 'Allegria', email: 'fluffy@flatironschool.com', password_digest: 'fruitfly'}
+users = User.create([{name: 'Jeffers', email: 'clevergirl@jurassicpark.gov', password_digest: 'password', public_profile: true},
+                    {name: 'Allegria', email: 'fluffy@flatironschool.com', password_digest: 'fruitfly', public_profile: true}
                   ])
 
 #######################
@@ -33,7 +33,7 @@ units55 = Unit.create(name: "teaspoon")
 units56 = Unit.create(name: 'bunch')
 units57 = Unit.create(name: 'cups')
 
-gumbo = Recipe.create(name: 'Chicken and Gumbo' , view_count: 0, user_id: User.all[0], image_url: 'http://www.simplecomfortfood.com/wp-content/uploads/2012/10/chicken-gumbo-recipe-high.jpg')
+gumbo = Recipe.create(name: 'Chicken and Gumbo' , view_count: 0, user_id: User.all[0], image_url: 'http://www.simplecomfortfood.com/wp-content/uploads/2012/10/chicken-gumbo-recipe-high.jpg', public_recipe: true)
 gumbo.categories = [categories[0]]
 
 ingredient1 = Ingredient.create(name: 'large boneless skinless chicken breast halves')
@@ -105,7 +105,7 @@ step11 = Step.create(description: 'Just before serving add the green onions, shr
 #######################
 
 
-omelet = Recipe.create(name: 'shrimp and avocado omelet', view_count: 0, user_id: User.all[1], image_url: 'http://farm3.static.flickr.com/2765/4165912035_70e5e7c364.jpg')
+omelet = Recipe.create(name: 'shrimp and avocado omelet', view_count: 0, user_id: User.all[1], image_url: 'http://farm3.static.flickr.com/2765/4165912035_70e5e7c364.jpg', public_recipe: true)
 omelet.categories = [categories[1]]
 
 
@@ -144,7 +144,7 @@ step23 = Step.create(description: 'Pour eggs into the hot skillet, tilting and s
 
 
 ###################
-mole = Recipe.create(name: 'Mole' , view_count: 0, user_id: User.all[0], image_url: 'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2003/10/27/1/ad1a01_mole_negro1.jpg.rend.sni12col.landscape.jpeg')
+mole = Recipe.create(name: 'Mole' , view_count: 0, user_id: User.all[0], image_url: 'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2003/10/27/1/ad1a01_mole_negro1.jpg.rend.sni12col.landscape.jpeg', public_recipe: true)
 mole.categories = [categories[0]]
 
 ingredient100 = Ingredient.create(name: 'ancho chiles')
@@ -211,7 +211,7 @@ step404 = Step.create(description: 'In a medium frying pan, fry roasted chiles i
 step405 = Step.create(description: 'In a large saucepan, heat vegetable shortening. Cook the puree in the shortening, stirring constantly. Add more of the chicken stock until you achieve the right level of consistency that you would like. Warm sauce for another 30 minutes over a low flame.', recipe_id:mole)
 
 
-sandwich = Recipe.create(name: 'Vietnamese Chicken Sandwich' , view_count: 0, user_id: User.all[1], image_url: 'http://assets.epicurious.com/photos/560d77e6f9a841923089d53a/6:4/w_620%2Ch_413/241475_hires.jpg')
+sandwich = Recipe.create(name: 'Vietnamese Chicken Sandwich' , view_count: 0, user_id: User.all[1], image_url: 'http://assets.epicurious.com/photos/560d77e6f9a841923089d53a/6:4/w_620%2Ch_413/241475_hires.jpg', public_recipe: true)
 sandwich.categories = [categories[2]]
 
 ingredient201 = Ingredient.create(name: 'daikon')
