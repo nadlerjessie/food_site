@@ -25,7 +25,7 @@ RSpec.describe Category, type: :model do
     end
 
     let(:recipe) {Recipe.new(name: 'Burrito')}
-    it 'can be associated with a recipe' do
+    it 'can be associated with multiple recipes' do
       recipe.categories.push(category, stews)
       expect(recipe.categories.length).to eq 2
     end

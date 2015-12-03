@@ -24,6 +24,7 @@ RSpec.describe Proportion, type: :model do
 
       let(:recipe) {Recipe.new(id: 300)}
       it 'has a recipe_id' do
+        proportion.recipe_id = recipe.id
         expect(recipe.id).to eq 300
       end
 
