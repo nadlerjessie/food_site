@@ -9,9 +9,9 @@ class SearchesController < ApplicationController
       redirect_to recipe_path(recipe)
     elsif @recipes.size == 0
       flash.now.notice = "Couldn't find any Recipes"
-      render '/recipes'
+      render '/recipes/index'
     else
-      render '/recipes'
+      render '/recipes/index'
     end
   end
 
