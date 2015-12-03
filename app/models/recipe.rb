@@ -29,15 +29,15 @@ class Recipe < ActiveRecord::Base
   # ,reject_if: proc {|attributes| attributes[:name].blank?}
 #######################
 
-
-
+  def self.find_recipes(current_user)
+    Recipe.where("public_recipe = ? OR user_id = ?", true, current_user.id)
+  end
 
   def create_proportion(proportion, ingredient, unit)
     proportion.ingredient = ingredient
     proportion.unit = unit
     proportion.save
   end
-
 end
 
 

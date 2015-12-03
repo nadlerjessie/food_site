@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   skip_before_action :login_required, except: [:new, :create]
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.find_recipes(current_user)
   end
 
   def create
