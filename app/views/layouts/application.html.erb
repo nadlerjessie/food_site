@@ -9,7 +9,7 @@
 <body>
 <nav>
   <% if current_user %>
-    <h2>Get Cookin', <%= current_user.name %>!</h2>
+    <h3>Get Cookin', <%= current_user.name %>!</h3>
     <%= link_to "Logout", logout_path %>
   <% else %>
     <%= link_to "Login", login_path %>
