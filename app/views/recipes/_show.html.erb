@@ -1,7 +1,9 @@
 <!-- Quantity: Unit: Ingredient name, handle nil for unit or quantity -->
 <% proportions.each do |proportion| %>
-  <% @proportion_view_object = ProportionViewObject.new(proportion) %>
-  <p><%= @proportion_view_object.display %></p>
+  <ul>
+    <% @proportion_view_object = ProportionViewObject.new(proportion) %>
+    <li><%= @proportion_view_object.display %></li>
+  </ul>
 <% end %>
 
 
