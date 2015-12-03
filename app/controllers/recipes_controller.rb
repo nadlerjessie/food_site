@@ -4,25 +4,28 @@ class RecipesController < ApplicationController
     @recipes = Recipe.find_recipes(current_user)
   end
 
-  def create
-    binding.pry
-    @recipe = Recipe.new(recipe_params)
-    @recipe.proportions.each do | proportion |
-      @recipe.ingredients.each do | ingredient |
-        @recipe.units.each do | unit |
-          @recipe.create_proportion(proportion, ingredient, unit)
-        end
-      end
-    end
-    binding.pry
-  end
-
   def new 
     @recipe = Recipe.new
     @recipe.steps.build
     @recipe.proportions.build
     @recipe.ingredients.build
     @recipe.units.build
+  end
+
+  def create
+    @recipe = Recipe.new(recipe_params)
+    proportion_params['proportions_attributes'].each do | i, proportion |
+    # @recipe.proportions.each_with_index do | proportion, i |
+      # @ingredient = @recipe.ingredients[i.to_i]
+      # @unit = @recipe.units[i.to_i]
+      @ingredient = proportion_params['ingredients_attributes'][i]
+      @unit = proportion_params['units_attributes'][i]
+      @recipe.create_proportion(proportion, @ingredient, @unit)
+    end
+    @recipe.user = current_user
+    @recipe.save
+    binding.pry
+    redirect_to recipe_path(@recipe)
   end
 
   def show
@@ -34,12 +37,16 @@ class RecipesController < ApplicationController
 
   private
 
-    def recipe_params
-      params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :proportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name],:unit_ids => [], :units_attributes => [:name])
+    # def recipe_params
+    #   params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :proportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name],:unit_ids => [], :units_attributes => [:name])
+    # end
+  def recipe_params
+      params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description])
     end
 
-    def proportion_params
-      params.require(:recipe).permit(:porportion_ids => [], :ingredient_ids => [], :ingredients_attributes => [:name])
-    end
+def proportion_params
+     params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
+ end
+
 
 end
