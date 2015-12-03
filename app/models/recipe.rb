@@ -19,4 +19,25 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :proportions
   has_many :units, through: :proportions
   has_many :steps
+  accepts_nested_attributes_for :steps
+  accepts_nested_attributes_for :proportions
+  accepts_nested_attributes_for :ingredients
+  accepts_nested_attributes_for :units 
+
+
+###### ADD LATER TO ENSURE INPUT TO DATABASE IS CORRECT ######
+  # ,reject_if: proc {|attributes| attributes[:name].blank?}
+#######################
+
+
+
+
+  def create_proportion(proportion, ingredient, unit)
+    proportion.ingredient = ingredient
+    proportion.unit = unit
+    proportion.save
+  end
+
 end
+
+

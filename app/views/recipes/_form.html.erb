@@ -1,0 +1,32 @@
+
+<%= form_for @recipe do |f| %>
+  
+  Recipe name: <%= f.text_field :name %><br />
+
+  <%= f.fields_for :proportions do |proportion| %>
+        Quantity: <%= proportion.text_field :quantity %>
+    <%= f.fields_for :units do |unit| %>
+        Unit: <%= unit.text_field :name %>
+    <%= f.fields_for :ingredients do |ingredient| %>
+        Ingredient: <%= ingredient.text_field :name %>
+      <br>
+    <%end%>
+  <%end%>
+<%end%>  
+
+
+    <%= f.fields_for :steps do |step_form| %>
+      <%= step_form.label :description %>
+      <%= step_form.text_field :description %>
+    <% end %>  
+
+<!-- GIVE USER OPTION TO ADD MORE STEP FIELDS --> 
+
+  <p>
+    <%= f.label :public_recipe, "Share this recipe with others?" %>
+    <%= f.select :public_recipe, [['Public', true], ['Private', false]], :prompt => 'Select' %>
+  </p>
+
+
+  <%= f.submit %>
+<% end %>
