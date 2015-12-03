@@ -36,8 +36,8 @@
 </div>
 <!-- GIVE USER OPTION TO ADD MORE STEP FIELDS --> 
   <p>
- <%= f.label :public_profile, "Choose a public or private profile" %>
-   <%= f.select :public_profile, [['Public', true], ['Private', false]], :prompt => 'Select' %>
+ <%= f.label :public_recipe, "Choose to make your recipe public or private" %>
+   <%= f.select :public_recipe, [['Public', true], ['Private', false]], :prompt => 'Select' %>
  </p>
   
   <%= f.submit %>
