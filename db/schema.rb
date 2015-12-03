@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20151202210059) do
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
-    t.integer  "view_count",    default: 0
+    t.integer  "view_count"
     t.boolean  "public_recipe", default: true
     t.integer  "user_id"
     t.string   "image_url"

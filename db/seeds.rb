@@ -33,7 +33,7 @@ units55 = Unit.create(name: "teaspoon")
 units56 = Unit.create(name: 'bunch')
 units57 = Unit.create(name: 'cups')
 
-gumbo = Recipe.create(name: 'Chicken and Gumbo' , view_count: 0, user_id: User.all[0], image_url: 'http://www.simplecomfortfood.com/wp-content/uploads/2012/10/chicken-gumbo-recipe-high.jpg', public_recipe: true)
+gumbo = Recipe.create(name: 'Chicken and Gumbo' , view_count: 0, user_id: User.all[0].id, image_url: 'http://www.simplecomfortfood.com/wp-content/uploads/2012/10/chicken-gumbo-recipe-high.jpg', public_recipe: false)
 gumbo.categories = [categories[0]]
 
 ingredient1 = Ingredient.create(name: 'large boneless skinless chicken breast halves')
