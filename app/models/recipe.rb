@@ -22,7 +22,13 @@ class Recipe < ActiveRecord::Base
   accepts_nested_attributes_for :steps
   accepts_nested_attributes_for :proportions
   accepts_nested_attributes_for :ingredients
-  accepts_nested_attributes_for :units
+  accepts_nested_attributes_for :units 
+
+
+###### ADD LATER TO ENSURE INPUT TO DATABASE IS CORRECT ######
+  # ,reject_if: proc {|attributes| attributes[:name].blank?}
+#######################
+
 
 
 
@@ -30,26 +36,7 @@ class Recipe < ActiveRecord::Base
     proportion.ingredient = ingredient
     proportion.unit = unit
     proportion.save
-    
-    # @ingredient = Ingredient.find_or_create_by(params[recipe][:ingredients][:name]])
-    #@proportion = Unit.find_or_create_by(params[recipe][:ingredients][:id])
-    # @proportion = Proportion.find_or_create_by(recipe][:proportions][:quantity])
-    # @proportion.unit = @unit.id
-    # @proportion.ingredient = @ingredient.id
-    # @proportion.recipe = @recipe.id
   end
-
-  # def proportions_attributes=(attributes_hash)
-  #   attributes_hash.values.each do |proportion_attributes|
-  #     self.proportions.build(proportion_attributes)
-  #   end
-  # end
-
-  # def ingredients_attributes=(attributes_hash)
-  #   attributes_hash.values.each do |ingredient_attributes|
-  #     self.ingredients.build(ingredient_attributes)
-  #   end
-  # end
 
 end
 

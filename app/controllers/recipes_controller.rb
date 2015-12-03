@@ -19,14 +19,10 @@ class RecipesController < ApplicationController
 
   def new 
     @recipe = Recipe.new
-    2.times do 
-      @recipe.steps.build
-      @recipe.proportions.build
-      @recipe.ingredients.build
-      @recipe.units.build
-    end
-
-
+    @recipe.steps.build
+    @recipe.proportions.build
+    @recipe.ingredients.build
+    @recipe.units.build
   end
 
   def show
