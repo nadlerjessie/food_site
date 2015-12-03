@@ -15,6 +15,7 @@
 class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :categories
   belongs_to :user
+  has_many :favorites
   has_many :proportions
   has_many :ingredients, through: :proportions
   has_many :units, through: :proportions
@@ -22,7 +23,7 @@ class Recipe < ActiveRecord::Base
   accepts_nested_attributes_for :steps
   accepts_nested_attributes_for :proportions
   accepts_nested_attributes_for :ingredients
-  accepts_nested_attributes_for :units 
+  accepts_nested_attributes_for :units
 
 
 ###### ADD LATER TO ENSURE INPUT TO DATABASE IS CORRECT ######
@@ -39,5 +40,3 @@ class Recipe < ActiveRecord::Base
     proportion.save
   end
 end
-
-
