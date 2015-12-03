@@ -15,8 +15,8 @@ Unit.destroy_all
 Favorite.destroy_all
 
 #######################
-users = User.create([{name: 'Jeffers', email: 'clevergirl@jurassicpark.gov', password: 'password', public_profile: true},
-                    {name: 'Allegria', email: 'fluffy@flatironschool.com', password: 'fruitfly', public_profile: true}
+users = User.create([{name: 'Jeffers', email: 'clevergirl@jurassicpark.gov', password: 'password', password_confirmation: 'password', public_profile: true},
+                    {name: 'Allegria', email: 'fluffy@flatironschool.com', password: 'fruitfly', password_confirmation: 'fruitfly', public_profile: true}
                   ])
 
 #######################
@@ -33,7 +33,7 @@ units55 = Unit.create(name: "teaspoon")
 units56 = Unit.create(name: 'bunch')
 units57 = Unit.create(name: 'cups')
 
-gumbo = Recipe.create(name: 'Chicken and Gumbo' , view_count: 0, user_id: User.all[0].id, image_url: 'http://www.simplecomfortfood.com/wp-content/uploads/2012/10/chicken-gumbo-recipe-high.jpg', public_recipe: false)
+gumbo = Recipe.new(name: 'Chicken and Gumbo' , view_count: 0, user_id: User.first.id, image_url: 'http://www.simplecomfortfood.com/wp-content/uploads/2012/10/chicken-gumbo-recipe-high.jpg', public_recipe: false)
 gumbo.categories = [categories[0]]
 
 ingredient1 = Ingredient.create(name: 'large boneless skinless chicken breast halves')
@@ -102,49 +102,52 @@ step9 = Step.create(description: 'Add the chicken and sausage. Bring to a boil, 
 step10 = Step.create(description: 'Add tomatoes and okra. Cover and simmer for 1 hour.', recipe_id: gumbo.id)
 step11 = Step.create(description: 'Just before serving add the green onions, shrimp and chopped parsley.', recipe_id: gumbo.id)
 
+gumbo.save
+
 #######################
 
 
-omelet = Recipe.create(name: 'shrimp and avocado omelet', view_count: 0, user_id: User.all[1], image_url: 'http://farm3.static.flickr.com/2765/4165912035_70e5e7c364.jpg', public_recipe: true)
+omelet = Recipe.new(name: 'shrimp and avocado omelet', view_count: 0, user_id: User.all[1], image_url: 'http://farm3.static.flickr.com/2765/4165912035_70e5e7c364.jpg', public_recipe: true)
 omelet.categories = [categories[1]]
 
 
 ingredient20 = Ingredient.create(name: 'ripe tomato, diced')
-proportion20 = Proportion.create([unit_id: nil, ingredient_id: ingredient20.id, quantity: 0.25, recipe_id: omelet.id]) 
+proportion20 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient20.id, quantity: 0.25]) 
 
 ingredient21 = Ingredient.create(name: 'ripe avocado, diced')
-proportion21 = Proportion.create([unit_id: nil, ingredient_id: ingredient21.id, quantity: 0.25, recipe_id: omelet.id]) 
+proportion21 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient21.id, quantity: 0.25]) 
 
 ingredient22 = Ingredient.create(name: 'chopped fresh cilantro, (optional)')
-proportion22 = Proportion.create([unit_id: units54.id, ingredient_id: ingredient22.id, quantity: 1, recipe_id: omelet.id]) 
+proportion22 = omelet.proportions.build([unit_id: units54.id, ingredient_id: ingredient22.id, quantity: 1]) 
 
 ingredient23 = Ingredient.create(name: 'sea salt')
-proportion23 = Proportion.create([unit_id: units55.id, ingredient_id: ingredient23.id, quantity: 0.125, recipe_id: omelet.id]) 
+proportion23 = omelet.proportions.build([unit_id: units55.id, ingredient_id: ingredient23.id, quantity: 0.125]) 
 
 ingredient24 = Ingredient.create(name: 'Freshly ground black pepper')
-proportion24 = Proportion.create([unit_id: nil, ingredient_id: ingredient24.id, quantity: nil, recipe_id: omelet.id]) 
+proportion24 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient24.id, quantity: nil]) 
 
 
 ingredient25 = Ingredient.create(name: 'eggs')
-proportion25 = Proportion.create([unit_id: nil, ingredient_id: ingredient25.id, quantity: 2, recipe_id: omelet.id]) 
+proportion25 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient25.id, quantity: 2]) 
 
 ingredient26 = Ingredient.create(name: 'butter')
-proportion26 = Proportion.create([unit_id: units54.id, ingredient_id: ingredient26.id, quantity: 1, recipe_id: omelet.id]) 
+proportion26 = omelet.proportions.build([unit_id: units54.id, ingredient_id: ingredient26.id, quantity: 1]) 
 
 ingredient27 = Ingredient.create(name: 'cooked shrimp, chopped roughly')
-proportion27 = Proportion.create([unit_id: nil, ingredient_id: ingredient27.id, quantity: 3, recipe_id: omelet.id]) 
+proportion27 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient27.id, quantity: 3]) 
 
 ingredient28 = Ingredient.create(name: 'grated cheese (medium cheddar or Monterey jack)')
-proportion28 = Proportion.create([unit_id: units53.id, ingredient_id: ingredient28.id, quantity: 0.33, recipe_id: omelet.id]) 
+proportion28 = omelet.proportions.build([unit_id: units53.id, ingredient_id: ingredient28.id, quantity: 0.33]) 
 
-step20 = Step.create(description: 'Toss tomato, avocado and cilantro together in a small bowl. Season to taste with salt and pepper. Set aside.', recipe_id: omelet.id)
-step21 = Step.create(description: 'Beat eggs in a separate small bowl just until whites and yolks are combined, not long enough to become frothy.', recipe_id: omelet.id)
-step22 = Step.create(description: 'Over medium-high heat, melt butter in a 6- or 8-inch skillet (preferably slope-sided and non-stick) until bubbling but not brown. Tilt skillet to spread butter evenly around and up sides.', recipe_id: omelet.id)
-step23 = Step.create(description: 'Pour eggs into the hot skillet, tilting and shaking the pan gently with one hand while stirring eggs briskly with the flat of a fork. Tilt pan and lift edges of omelet with a fork to allow runny egg to reach sides and cook. When eggs begin to firm up and there is almost no runny egg left, add shrimp and cheese, spreading them over the center third of the omelet. Immediately use the fork to fold each side of omelet up over center filling. Tilt the pan to help roll omelet into a loose cylinder. Cook 10 to 30 seconds longer, depending on how brown you prefer the bottom (check for brownness by lifting a corner). Slide omelet onto a warmed plate, top with tomato-avocado mixture and serve.', recipe_id: omelet.id)
+step20 = omelet.steps.build(description: 'Toss tomato, avocado and cilantro together in a small bowl. Season to taste with salt and pepper. Set aside.')
+step21 = omelet.steps.build(description: 'Beat eggs in a separate small bowl just until whites and yolks are combined, not long enough to become frothy.')
+step22 = omelet.steps.build(description: 'Over medium-high heat, melt butter in a 6- or 8-inch skillet (preferably slope-sided and non-stick) until bubbling but not brown. Tilt skillet to spread butter evenly around and up sides.')
+step23 = omelet.steps.build(description: 'Pour eggs into the hot skillet, tilting and shaking the pan gently with one hand while stirring eggs briskly with the flat of a fork. Tilt pan and lift edges of omelet with a fork to allow runny egg to reach sides and cook. When eggs begin to firm up and there is almost no runny egg left, add shrimp and cheese, spreading them over the center third of the omelet. Immediately use the fork to fold each side of omelet up over center filling. Tilt the pan to help roll omelet into a loose cylinder. Cook 10 to 30 seconds longer, depending on how brown you prefer the bottom (check for brownness by lifting a corner). Slide omelet onto a warmed plate, top with tomato-avocado mixture and serve.')
 
+omelet.save
 
 ###################
-mole = Recipe.create(name: 'Mole' , view_count: 0, user_id: User.all[0], image_url: 'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2003/10/27/1/ad1a01_mole_negro1.jpg.rend.sni12col.landscape.jpeg', public_recipe: true)
+mole = Recipe.new(name: 'Mole' , view_count: 0, user_id: User.all[0], image_url: 'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2003/10/27/1/ad1a01_mole_negro1.jpg.rend.sni12col.landscape.jpeg', public_recipe: true)
 mole.categories = [categories[0]]
 
 ingredient100 = Ingredient.create(name: 'ancho chiles')
@@ -210,8 +213,9 @@ step404 = Step.create(description: 'In a medium frying pan, fry roasted chiles i
 ', recipe_id:mole.id)
 step405 = Step.create(description: 'In a large saucepan, heat vegetable shortening. Cook the puree in the shortening, stirring constantly. Add more of the chicken stock until you achieve the right level of consistency that you would like. Warm sauce for another 30 minutes over a low flame.', recipe_id:mole)
 
+mole.save
 
-sandwich = Recipe.create(name: 'Vietnamese Chicken Sandwich' , view_count: 0, user_id: User.all[1], image_url: 'http://assets.epicurious.com/photos/560d77e6f9a841923089d53a/6:4/w_620%2Ch_413/241475_hires.jpg', public_recipe: true)
+sandwich = Recipe.new(name: 'Vietnamese Chicken Sandwich' , view_count: 0, user_id: User.all[1], image_url: 'http://assets.epicurious.com/photos/560d77e6f9a841923089d53a/6:4/w_620%2Ch_413/241475_hires.jpg', public_recipe: true)
 sandwich.categories = [categories[2]]
 
 ingredient201 = Ingredient.create(name: 'daikon')
@@ -257,7 +261,7 @@ step504 = Step.create(description:'Drain slaw in a colander.', recipe_id:sandwic
 step505 = Step.create(description:'Arrange chicken, slaw, and lettuce on cilantro. Spread top layer of bread with mayonnaise and cut sandwich crosswise into fourths.
 ', recipe_id:sandwich.id )
 
-
+sandwich.save
 
 
 

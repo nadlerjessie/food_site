@@ -69,8 +69,25 @@ RSpec.describe Recipe, type: :model do
   end
 
   describe '.find_recipes' do
-    #returns list of recipes with public set to true
-    # 
+    let(:current_user) {FactoryGirl.create(:user, email: 'girlygirl@yahoo.com')}
+    let(:user) {FactoryGirl.create(:user)}
+    let(:step) {FactoryGirl.create(:step)}
+    let(:ingredient) {FactoryGirl.create(:ingredient)}
+    let(:proportion) {Proportion.create(ingredient_id: ingredient.id)}
+    let(:recipe_public) {FactoryGirl.create(:recipe, user_id: user.id, public_recipe: true, proportions: [proportion], steps: [step])}
+    let(:recipe_private) {FactoryGirl.create(:recipe, name: 'Cookies', user_id: current_user.id, public_recipe: false, proportions: [proportion], steps: [step])}
+    
+    context 'when logged in' do
+      it "displays user's private recipes and public recipes" do
+        expect(Recipe.find_recipes(current_user).size).to eq(2)
+      end
+
+
+    end
+
+    #check logged in? and own recipe
+    #check if logged out
+    #check if logged in? but down own recipe
   end
 
 
