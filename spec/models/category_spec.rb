@@ -4,21 +4,30 @@ require 'rails_helper'
 
 RSpec.describe Category, type: :model do
   describe 'Category' do
-    before do
-      @tex_mex = Category.create(name: "Tex-Mex")
-      @burrito = Recipe.create(name:"burrito")
-      @fajitas = Recipe.create(name:"fajitas")
-      binding.pry
-      @burrito.category_id = @tex_mex.id
-      @fajitas.category_id = @tex_mex.id
+    let(:category) {FactoryGirl.build(:category, id: 132, name: name)}
+    let(:stews) {FactoryGirl.build(:category, id: 222, name: 'stews')}
+
+    let(:name) {'tex-mex'}
+    it 'category has name' do
+      expect(name).to eq name
     end
 
-    it 'can belong to a recipe' do
-      expect(@burrito.category_id).to eq @tex_mex.id
+    let(:recipe) {Recipe.new(name: 'Burrito')}
+    it 'can be associated with a recipe' do
+      recipe.categories << category
+      expect(recipe.categories.first.id).to eq category.id
     end
 
-    it 'can belong to many recipes' do
-      expect(@burrito.category_id && @fajitas.category_id).to eq @tex_mex.id
+    let(:recipe) {Recipe.new(name: 'Burrito')}
+    it 'can be associated with a recipe' do
+      recipe.categories << category
+      expect(recipe.categories.first.id).to eq category.id
+    end
+
+    let(:recipe) {Recipe.new(name: 'Burrito')}
+    it 'can be associated with a recipe' do
+      recipe.categories.push(category, stews)
+      expect(recipe.categories.length).to eq 2
     end
 
   end

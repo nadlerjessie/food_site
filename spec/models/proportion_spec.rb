@@ -5,32 +5,27 @@ require 'rails_helper'
 RSpec.describe Proportion, type: :model do
 
   describe 'Proportion' do
+    let(:proportion) {FactoryGirl.build(:proportion, quantity: quantity)}
 
-    before do
-      @recipe = Recipe.create(name: "Cookies")
-      @proportion = Proportion.create(quantity: 100, recipe_id: @recipe.id)
+      let(:quantity) {100}
+      it 'has a quantity' do
+        expect(quantity).to eq 100
+      end
 
-      @proportion.ingredient_id = Ingredient.create(name: "flour").id
-      @flour_id = @proportion.ingredient_id
+      let(:ingredient) {Ingredient.new(id: 300)}
+      it 'has an ingredient_id' do
+        expect(ingredient.id).to eq 300
+      end
 
-      @proportion.unit_id = Unit.create(name: "cup").id
-      @unit_id = @proportion.unit_id
-    end
+      let(:unit) {Unit.new(id: 300)}
+      it 'has a unit_id' do
+        expect(unit.id).to eq 300
+      end
 
-    it 'has an ingredient id' do
-      expect(@proportion.ingredient_id).to eq @flour_id
-    end
+      let(:recipe) {Recipe.new(id: 300)}
+      it 'has a recipe_id' do
+        expect(recipe.id).to eq 300
+      end
 
-    it 'has an unit id' do
-      expect(@proportion.unit_id).to eq @unit_id
-    end
-
-    it 'has an recipe id' do
-      expect(@proportion.recipe_id).to eq @recipe.id
-    end
-
-    it 'has a quantity' do
-      expect(Proportion.where(quantity: 100).first).to eq(@proportion)
-    end
   end
 end
