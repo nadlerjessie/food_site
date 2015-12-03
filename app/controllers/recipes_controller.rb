@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
- 
+  skip_before_action :login_required, except: [:new, :create]
   def index
     @recipes = Recipe.all
   end
@@ -26,7 +26,9 @@ class RecipesController < ApplicationController
   end
 
   def show
-    # @recipe = 
+    @recipe = Recipe.find(params[:id]) 
+    @proportions = @recipe.proportions
+    @steps = @recipe.steps
   end
 
   private
