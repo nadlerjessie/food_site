@@ -10,4 +10,5 @@
 #
 
 class Unit < ActiveRecord::Base
+  has_many :proportions
 end
