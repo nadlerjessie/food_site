@@ -5,7 +5,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    binding.pry
     @recipe = Recipe.new(recipe_params)
     @recipe.proportions.each do | proportion |
       @recipe.ingredients.each do | ingredient |
@@ -14,7 +13,6 @@ class RecipesController < ApplicationController
         end
       end
     end
-    binding.pry
   end
 
   def new 
