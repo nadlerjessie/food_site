@@ -22,21 +22,23 @@
 </div>
 <br>  
 
+  <div class='descriptions-list'>
+    <div class='description-item' data-description-id='0'>
+      <%= f.fields_for :steps do |step_form| %>
+        <%= step_form.label :description%>
+        <%= step_form.text_field :description %>
+      <% end %>
+    </div>  
+  </div> 
 
-    <%= f.fields_for :steps do |step_form| %>
-      <%= step_form.label :description%>
-      <%= step_form.text_field :description %>
-    <% end %>  
 <div>
-  <button class='add-step'>Add Step</button>
+  <button class='add-description'>Add Step</button>
 </div>
 <!-- GIVE USER OPTION TO ADD MORE STEP FIELDS --> 
-
   <p>
-    <%= f.label :public_recipe, "Share this recipe with others?" %>
-    <%= f.select :public_recipe, [['Public', true], ['Private', false]], :prompt => 'Select' %>
-  </p>
-
-
+ <%= f.label :public_profile, "Choose a public or private profile" %>
+   <%= f.select :public_profile, [['Public', true], ['Private', false]], :prompt => 'Select' %>
+ </p>
+  
   <%= f.submit %>
 <% end %>

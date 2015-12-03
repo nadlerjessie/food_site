@@ -6,13 +6,12 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.proportions.each do | proportion |
-      @recipe.ingredients.each do | ingredient |
-        @recipe.units.each do | unit |
-          @recipe.create_proportion(proportion, ingredient, unit)
-        end
-      end
+    @recipe.proportions.each_with_index do | proportion, i |
+      @ingredient = @recipe.ingredients[i]
+      @unit = @recipe.units[i]
+      @recipe.create_proportion(proportion, @ingredient, @unit)
     end
+    binding.pry
   end
 
   def new 
