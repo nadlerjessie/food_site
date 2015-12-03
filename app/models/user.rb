@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :recipes
   has_many :favorites
 
-  validates_presence_of :name, :public_profile
+  validates_presence_of :name, :public_profile, :password, :password_confirmation
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 

@@ -190,7 +190,7 @@ DEPENDENCIES
   better_errors (~> 2.1, >= 2.1.1)
   byebug
   coffee-rails (~> 4.1.0)
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   graphviz
   jbuilder (~> 2.0)
   jquery-rails

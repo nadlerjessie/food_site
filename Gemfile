@@ -28,7 +28,7 @@ gem 'pry'
 gem 'annotate'
 gem 'better_errors', '~> 2.1', '>= 2.1.1'
 
-gem 'factory_girl_rails'
+gem 'factory_girl_rails', '~> 4.0'
 gem 'rspec-rails', '~> 3.4'
 gem 'graphviz'
 
