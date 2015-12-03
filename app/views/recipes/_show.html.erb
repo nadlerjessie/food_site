@@ -1,4 +1,3 @@
-<!-- Quantity: Unit: Ingredient name, handle nil for unit or quantity -->
 <% proportions.each do |proportion| %>
   <ul>
     <% @proportion_view_object = ProportionViewObject.new(proportion) %>
@@ -6,10 +5,8 @@
   </ul>
 <% end %>
 
-
-
 <% steps.each_with_index do |step, index| %>
   <% @step_view_object = StepViewObject.new(step)%>
   <p><%= @step_view_object.list(index) %></p>
 <% end %>
-<!-- Image -->
+

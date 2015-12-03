@@ -1,3 +1,4 @@
 <h1><%= @recipe.name %></h1>
+<h3><%= @recipe_view_object.list %></h3><h2><%= @recipe_view_object.created_by %></h2>
 <img src="<%= @recipe.image_url%>" alt="<%= @recipe.name%>" style="width:304px;height:228px;">
 <div><%= render partial: 'show', locals: {recipe: @recipe, steps: @steps, proportions: @proportions} %></div>
