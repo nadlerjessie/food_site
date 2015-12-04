@@ -69,27 +69,46 @@ RSpec.describe Recipe, type: :model do
   end
 
   describe '.find_recipes' do
-    let(:current_user) {FactoryGirl.create(:user, email: 'girlygirl@yahoo.com')}
-    let(:user) {FactoryGirl.create(:user)}
     let(:step) {FactoryGirl.create(:step)}
     let(:ingredient) {FactoryGirl.create(:ingredient)}
     let(:proportion) {Proportion.create(ingredient_id: ingredient.id)}
-    let(:recipe_public) {FactoryGirl.create(:recipe, user_id: user.id, public_recipe: true, proportions: [proportion], steps: [step])}
-    let(:recipe_private) {FactoryGirl.create(:recipe, name: 'Cookies', user_id: current_user.id, public_recipe: false, proportions: [proportion], steps: [step])}
-    
-    context 'when logged in' do
+    context 'when logged in and own private recipe' do
+      let(:recipe_public) {FactoryGirl.create(:recipe, user_id: user.id, public_recipe: true, proportions: [proportion], steps: [step])}
+      let(:recipe_private) {FactoryGirl.create(:recipe, name: 'Cookies', user_id: current_user.id, public_recipe: false, proportions: [proportion], steps: [step])}
+      let(:current_user) {FactoryGirl.create(:user, email: 'girlygirl@yahoo.com')}
+      let(:user) {FactoryGirl.create(:user)}
       it "displays user's private recipes and public recipes" do
         recipe_private
         recipe_public
         expect(Recipe.find_recipes(current_user).size).to eq(2)
       end
-
-
     end
 
-    #check logged in? and own recipe
-    #check if logged out
-    #check if logged in? but down own recipe
+    context "when logged in and don't own private recipe" do
+      let(:recipe_public) {FactoryGirl.create(:recipe, user_id: current_user.id, public_recipe: true, proportions: [proportion], steps: [step])}
+      let(:recipe_private) {FactoryGirl.create(:recipe, name: 'Cookies', user_id: user.id, public_recipe: false, proportions: [proportion], steps: [step])}
+      let(:current_user) {FactoryGirl.create(:user, email: 'girlygirl@yahoo.com')}
+      let(:user) {FactoryGirl.create(:user)}
+      it "displays only public recipes" do
+        recipe_private
+        recipe_public
+        expect(Recipe.find_recipes(current_user).size).to eq(1)
+      end
+    end
+
+
+    context "when logged out" do
+      let(:recipe_public) {FactoryGirl.create(:recipe, user_id: current_user.id, public_recipe: true, proportions: [proportion], steps: [step])}
+      let(:recipe_private) {FactoryGirl.create(:recipe, name: 'Cookies', user_id: user.id, public_recipe: false, proportions: [proportion], steps: [step])}
+      let(:user) {FactoryGirl.create(:user)}
+      let(:current_user) {Guest.new}
+      it "displays only public recipes" do
+        recipe_private
+        recipe_public
+        expect(Recipe.find_recipes(current_user).size).to eq(1)
+      end
+    end
+    
   end
 
 
