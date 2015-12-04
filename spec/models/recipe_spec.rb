@@ -108,10 +108,7 @@ RSpec.describe Recipe, type: :model do
         expect(Recipe.find_recipes(current_user).size).to eq(1)
       end
     end
-    
   end
-
-
 end
 
 

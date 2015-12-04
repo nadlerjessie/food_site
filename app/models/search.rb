@@ -20,4 +20,4 @@ end
 
 
 # method to hand the logic for permissions
-"((lower(recipes.name) like ? OR ingredients.name like ? OR categories.name like ?) AND public_recipe = ?) OR ((lower(recipes.name) like ? OR ingredients.name like ? OR categories.name like ?) AND user_id = ?)"
+# "((lower(recipes.name) like ? OR ingredients.name like ? OR categories.name like ?) AND public_recipe = ?) OR ((lower(recipes.name) like ? OR ingredients.name like ? OR categories.name like ?) AND user_id = ?)"
