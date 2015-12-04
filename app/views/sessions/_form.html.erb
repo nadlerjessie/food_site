@@ -1,0 +1,18 @@
+<div class='row-fluid'>
+ <div class='span4 well'>
+    <%= form_tag(sessions_path, html: {class: 'well'}) do %>
+      <p>
+        <label>Email</label>
+        <%= text_field_tag "email" %>
+      </p>
+
+      <p>
+        <label>Password</label>
+        <%= password_field_tag "password" %>
+      </p>
+        <%= submit_tag "Get Cookin' Good Lookin'", html:{class: 'btn btn-default'}%>
+    <% end %>
+  </div>
+  <div class='span8'>
+  </div>
+</div>

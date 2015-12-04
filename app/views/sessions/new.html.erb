@@ -1,12 +1,4 @@
-<%= form_tag(sessions_path) do %>
-  <p>
-    <label id='login-email'>Email</label>
-    <%= text_field_tag "email" %>
-  </p>
+<h1>Log In</h1>
 
-  <p>
-    <label id='login-password'>Password</label>
-    <%= password_field_tag "password" %>
-  </p>
-  <%= submit_tag "Get Cookin' Good Lookin'" %>
-<% end %>
+<%= render 'form' %>
+
