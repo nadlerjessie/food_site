@@ -79,6 +79,8 @@ RSpec.describe Recipe, type: :model do
     
     context 'when logged in' do
       it "displays user's private recipes and public recipes" do
+        recipe_private
+        recipe_public
         expect(Recipe.find_recipes(current_user).size).to eq(2)
       end
 
