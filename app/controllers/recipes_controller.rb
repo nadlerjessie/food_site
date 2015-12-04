@@ -15,17 +15,20 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     proportion_params['proportions_attributes'].each do | i, proportion |
-    # @recipe.proportions.each_with_index do | proportion, i |
-      # @ingredient = @recipe.ingredients[i.to_i]
-      # @unit = @recipe.units[i.to_i]
       @ingredient = proportion_params['ingredients_attributes'][i]
       @unit = proportion_params['units_attributes'][i]
       @recipe.create_proportion(proportion, @ingredient, @unit)
     end
+
     @recipe.user = current_user
-    @recipe.save
+
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
+    else
+      render 'new'
+    end
     binding.pry
-    redirect_to recipe_path(@recipe)
+    
   end
 
   def show
