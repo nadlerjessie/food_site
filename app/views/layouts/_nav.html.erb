@@ -7,7 +7,7 @@
           <li>
             <form class="navbar-form navbar-left" role="search" method="GET" action="/searches">
                 <div class="form-group">
-                  <input type="text" name= "keyword" class="form-control" placeholder="Search By Recipe Name, Ingredient, or Category" size='60'>
+                  <input type="text" name= "keyword" class="form-control" placeholder="Search By Recipe Name or Ingredient" size='60'>
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>
@@ -16,7 +16,7 @@
          
         
         <ul class='nav pull-right'>
-          <% if current_user %>
+          <% if current_user.class == User %>
               <li><%= link_to 'My Profile', user_path(current_user) %></li>
               <li><%= link_to "Log Out", logout_path %></li>
           <% else %>
