@@ -8,12 +8,4 @@ class Search < ActiveRecord::Base
     Recipe.joins(:ingredients).where("((lower(recipes.name) like ? OR ingredients.name like ? ) AND public_recipe = ?) OR ((lower(recipes.name) like ? OR ingredients.name like ? ) AND user_id = ?)", search, search, true, search, search, current_user.id).uniq
     
   end
-
 end
-
-#category, by user who created if
-
-
-
-# method to hand the logic for permissions
-# "((lower(recipes.name) like ? OR ingredients.name like ? OR categories.name like ?) AND public_recipe = ?) OR ((lower(recipes.name) like ? OR ingredients.name like ? OR categories.name like ?) AND user_id = ?)"

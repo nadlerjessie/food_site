@@ -11,11 +11,6 @@ RSpec.describe Ingredient, type: :model do
       expect(name).to eq name
     end
 
-    let(:proportion) {Proportion.new(ingredient_id: ingredient.id)}
-    it 'can be associated with a proportion' do
-      expect(proportion.ingredient_id).to eq ingredient.id
-    end
-
     let(:proportion1) {Proportion.new(unit_id: ingredient.id)}
     let(:proportion2) {Proportion.new(unit_id: ingredient.id)}
     it 'can be associated with multiple proportions' do

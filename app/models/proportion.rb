@@ -15,4 +15,5 @@ class Proportion < ActiveRecord::Base
   belongs_to :unit
   belongs_to :ingredient
   belongs_to :recipe
+  validates_presence_of :ingredient
 end
