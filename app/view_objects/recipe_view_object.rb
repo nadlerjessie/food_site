@@ -7,11 +7,7 @@ class RecipeViewObject
   end
 
   def list
-    list_of_categories = ""
-    categories.each do |category|
-      list_of_categories += "#{category.name.capitalize} | "
-    end
-    list_of_categories[0...-2]
+    categories.map {|category| category.name.capitalize}.join(" | ")
   end
 
   def created_by
