@@ -2,23 +2,27 @@ require 'rails_helper'
 RSpec.describe Recipe, type: :model do
   
   describe '#valid?' do 
-    let(:recipe) {FactoryGirl.build(:recipe, name: name)}
+    let(:recipe) {FactoryGirl.build(:recipe, name: name, proportions: proportions, steps: steps)}
+    let(:proportions) {[FactoryGirl.build(:proportion)]}
+    let(:steps) {[FactoryGirl.build(:step)]}
     let(:name) {"Burger"}
     
     context "when the recipe doesn't have a name" do
       let(:name) {nil}
-      it 'is invalid with no name' do 
+      it 'is invalid without a name' do 
         expect(recipe).to_not be_valid
       end
     end
 
     context 'when the recipe has no proportions' do
+      let(:proportions) {[]}
       it 'is invalid' do
         expect(recipe).to_not be_valid
       end
     end
 
     context 'when the recipe has no steps' do
+      let(:steps) {[]}
       it 'is invalid' do
         expect(recipe).to_not be_valid
       end
@@ -35,22 +39,22 @@ RSpec.describe Recipe, type: :model do
       let(:proportion) {FactoryGirl.build(:proportion)}
       let(:step) {FactoryGirl.build(:step)}
 
-      it 'can have ingredients' do
+      it 'can add ingredients' do
         recipe.ingredients << ingredient
         expect(recipe.ingredients).to_not be_empty
       end
 
-      it 'can have units' do
+      it 'can add units' do
         recipe.units << unit
         expect(recipe.units).to_not be_empty
       end
 
-      it 'can have proportions' do
+      it 'can add proportions' do
         recipe.proportions << proportion
         expect(recipe.proportions).to_not be_empty
       end
 
-      it 'can have steps' do
+      it 'can add steps' do
         recipe.steps << step
         expect(recipe.steps).to_not be_empty
       end       

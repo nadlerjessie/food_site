@@ -38,7 +38,16 @@ class Recipe < ActiveRecord::Base
   def create_proportion(proportion, ingredient, unit)
     @proportion = self.proportions.build(proportion)
     @proportion.ingredient = Ingredient.find_or_create_by(ingredient)
-    @proportion.unit = unit[:name].length <= 0 || Unit.find_or_create_by(unit)
+    @proportion.unit = build_unit_for_recipe_proportion(unit)
     @proportion.save
   end
+
+  def build_unit_for_recipe_proportion(unit)
+    if unit[:name].length > 0
+      Unit.find_or_create_by(unit)
+    else
+      nil
+    end
+  end
+
 end
