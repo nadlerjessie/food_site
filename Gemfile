@@ -33,6 +33,7 @@ gem 'rspec-rails', '~> 3.4'
 gem 'graphviz'
 
 gem 'nokogiri'
+gem 'mechanize'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

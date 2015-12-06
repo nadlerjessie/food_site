@@ -53,7 +53,8 @@ module Adapters
 
     def create_recipe(url)
       recipe_attributes = connection.get_recipe(url)
-      recipe = Recipe.new(name: recipe_attributes.first, image_url: recipe_attributes.last)
+
+      recipe = Recipe.new(name: recipe_attributes.first)
       build_proportions(recipe, recipe_attributes[1])
       build_steps(recipe, recipe_attributes[2])
       build_categoires(recipe, recipe_attributes[3])

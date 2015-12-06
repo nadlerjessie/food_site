@@ -29,13 +29,17 @@ module Adapters
       recipe.css('.title h1').text
     end
 
-    def get_image(recipe)
-      recipe.css('.single-photo-recipe a.ico-wrap img').attr('src').value
-    end
+    # def get_image(recipe)
+    #   if recipe.css('.single-photo-recipe a.ico-wrap img')
+    #     recipe.css('.single-photo-recipe a.ico-wrap img').attr('src').value
+    #   else
+    #     ""
+    #   end
+    # end
 
     def get_recipe(url)
       recipe = scrape(url)
-      [get_name(recipe), get_proportions(recipe), get_steps(recipe), get_categories(recipe), get_image(recipe)]
+      [get_name(recipe), get_proportions(recipe), get_steps(recipe), get_categories(recipe)]
     end
   end
 end
