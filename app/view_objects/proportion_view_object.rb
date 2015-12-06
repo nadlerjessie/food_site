@@ -26,8 +26,6 @@ class ProportionViewObject
     end   
   end
 
-
-
   def quantity
     quantity_conversion(original_quantity)
   end
