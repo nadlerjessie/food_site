@@ -9,7 +9,7 @@
 <body>
 
 <%= render 'layouts/nav' %>
-<% if current_user %>
+<% if current_user.class == User %>
   <h3>Get Cookin', <%= current_user.name.capitalize %>!</h3>
 <% end %>
   

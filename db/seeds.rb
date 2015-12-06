@@ -14,6 +14,10 @@ Step.destroy_all
 Unit.destroy_all
 Favorite.destroy_all
 
+food_network_recipe = Recipe.new.test_scrape("http://www.foodnetwork.com/recipes/spicy-beef-chili-recipe.html")
+food_network_recipe = Recipe.new.test_scrape("http://www.foodnetwork.com/recipes/ina-garten/herb-coeur-a-la-creme-recipe.html")
+
+
 #######################
 users = User.create([{name: 'Jeffers', email: 'clevergirl@jurassicpark.gov', password: 'password', password_confirmation: 'password', public_profile: true},
                     {name: 'Allegria', email: 'fluffy@flatironschool.com', password: 'fruitfly', password_confirmation: 'fruitfly', public_profile: true}

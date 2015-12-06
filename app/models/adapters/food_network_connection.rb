@@ -1,0 +1,41 @@
+require 'open-uri'
+module Adapters
+  class FoodNetworkConnection
+
+    attr_reader :connection 
+
+    def initialize
+      @connection = self.class
+    end
+
+    def scrape(url)
+      read_url = open(url)
+      recipe = Nokogiri::HTML(read_url)
+    end 
+
+    def get_proportions(recipe)
+      proprotions = recipe.css('.bd .ingredients').children.children.css('li').map {|proportion| proportion.text.split(" ")}
+    end
+
+    def get_steps(recipe)
+      steps = recipe.css('.bd .directions').children.css('p').map {|step| step.text}
+    end
+
+    def get_categories(recipe)
+      categories = recipe.css('.categories li').map {|category| category.text}
+    end
+
+    def get_name(recipe)
+      recipe.css('.title h1').text
+    end
+
+    def get_image(recipe)
+      recipe.css('.single-photo-recipe a.ico-wrap img').attr('src').value
+    end
+
+    def get_recipe(url)
+      recipe = scrape(url)
+      [get_name(recipe), get_proportions(recipe), get_steps(recipe), get_categories(recipe), get_image(recipe)]
+    end
+  end
+end

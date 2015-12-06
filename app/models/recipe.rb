@@ -50,4 +50,8 @@ class Recipe < ActiveRecord::Base
     end
   end
 
+  def test_scrape(url)
+    client = Adapters::RecipeClient.new
+    client.create_recipe(url)
+  end
 end

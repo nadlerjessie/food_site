@@ -7,6 +7,11 @@ RSpec.describe Recipe, type: :model do
     let(:steps) {[FactoryGirl.build(:step)]}
     let(:name) {"Burger"}
     
+    context '' do 
+      it 'scrapes' do 
+        recipe.test_scrape
+      end
+    end
     context "when the recipe doesn't have a name" do
       let(:name) {nil}
       it 'is invalid without a name' do 

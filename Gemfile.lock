@@ -210,6 +210,7 @@ DEPENDENCIES
   graphviz
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   pg
   pry
   rack_session_access
