@@ -3,7 +3,7 @@
     <% @proportion_view_object = ProportionViewObject.new(proportion) %>
     <li><%= @proportion_view_object.display %></li>
     <%= form_for proportion, remote: true do |f| %>
-    <%= f.text_field :quantity %>
+      <%= f.text_field :quantity %>
       <%= f.fields_for :unit do |field| %>
         <%= field.text_field :name, :value => @proportion_view_object.unit%>
       <%end%>
@@ -15,11 +15,9 @@
 <% end %>
 
 <% steps.each_with_index do |step, index| %>
-  <% @step_view_object = StepViewObject.new(step)%>
-  <p><%= @step_view_object.list(index) %></p>
+  <%= render partial: 'steps/step', locals: {index: index, step: step}%>
   <%= form_for step, remote: true do |f| %>
-    <%= f.fields_for :step do |field| %>
-      <%= field.text_area :description, :value => step.description %>
-    <%end%>
+    <%= f.text_area :description %>
+    <%= f.submit %>
   <%end%>
-<% end %>
+<%end%>
