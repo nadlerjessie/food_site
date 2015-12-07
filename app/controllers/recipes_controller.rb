@@ -32,14 +32,14 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_view_object = RecipeViewObject.new(@recipe)
-    @proportions = @recipe.proportions
+    @proportions = @recipe.proportions.sort
     @steps = @recipe.steps.sort
-
   end
 
   def update
     recipe = Recipe.find(params[:id])
     recipe.update_attributes(recipe_params)
+    redirect_to recipe
   end
 
   private

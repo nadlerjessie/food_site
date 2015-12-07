@@ -22,7 +22,5 @@ RSpec.describe Unit, type: :model do
       expect(proportion1.unit_id == unit.id && proportion2.unit_id == unit.id).to eq true
       # expect(Proportion.where(unit_id: unit.id).length).to eq 2
     end
-
-
   end
 end

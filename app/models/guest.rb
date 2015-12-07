@@ -1,5 +1,4 @@
 class Guest
-
   def id
     return 0
   end
@@ -7,5 +6,4 @@ class Guest
   def name
     "Guest"
   end
-
 end

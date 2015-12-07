@@ -1,12 +1,13 @@
-<h1>Recipes</h1>
-<% @recipes.each do |recipe| %>
-  <% recipe_view_object = RecipeViewObject.new(recipe) %>
-  <div class="inline-block"><%= link_to recipe.name, recipe_path(recipe)%></div>
-  
-  <%= image_tag(recipe.image_url, style: "width:152px;height:114px;", alt: recipe_view_object.image_alt)%>
-<% end %>
+<div id="recipe-index-js">
+  <h1>Recipes</h1>
+  <% @recipes.each do |recipe| %>
+    <% recipe_view_object = RecipeViewObject.new(recipe) %>
+    <div class="inline-block"><%= link_to recipe.name, recipe_path(recipe)%></div>
+    
+    <%= image_tag(recipe.image_url, style: "width:152px;height:114px;", alt: recipe_view_object.image_alt)%>
+  <% end %>
 
-<div id="show-recipes">
+  <div id="show-recipes">
+  </div>
 </div>
-
 <!-- <img src="<= recipe.image_url%>" alt="<= recipe.name%>" style="width:152px;height:114px;">  -->
