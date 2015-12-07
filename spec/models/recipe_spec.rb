@@ -9,8 +9,7 @@ RSpec.describe Recipe, type: :model do
     
     # context '' do 
     #   it 'scrapes' do 
-    #     binding.pry
-    #     recipe.test_scrape("")
+    #     recipe.test_scrape("http://www.foodnetwork.com/recipes/mario-batali/agnolotti-with-sausage-and-peas-recipe.html")
     #   end
     # end
     context "when the recipe doesn't have a name" do
