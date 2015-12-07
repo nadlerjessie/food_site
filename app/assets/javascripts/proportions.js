@@ -1,7 +1,7 @@
 $(function(){
-  $(document).on('click', 'button.delete-proprtion-js', function() {
-    debugger;
-  })
+  // $(document).on('click', 'button.delete-proprtion-js', function() {
+  //   debugger;
+  // })
 
   $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
     $(this).parent().children('.proportion-js').html(data.template)
