@@ -14,7 +14,7 @@
 
 <h3><%= @recipe_view_object.list %></h3>
 <h4><%= @recipe_view_object.created_by %></h4>
-<%= image_tag(@recipe.image_url, style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%> 
+<%= image_tag(@recipe_view_object.image_url, style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%> 
 
 <div><%= render partial: 'proportions_show', locals: {proportions: @proportions} %></div>
 <div><%= render partial: 'steps_show', locals: {steps: @steps} %></div>
