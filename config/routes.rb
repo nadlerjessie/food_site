@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   resources :searches
+  resources :proportions
+  resources :units
+  resources :ingredients
+  resources :steps
   root to: 'users#new'
   get '/login' => 'sessions#new'
   post '/sessions' => 'sessions#create'

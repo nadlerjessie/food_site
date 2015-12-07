@@ -9,8 +9,17 @@ module Adapters
     end
 
     def scrape(url)
-      read_url = open(url)
-      recipe = Nokogiri::HTML(read_url)
+      begin
+        read_url = open(url)
+        return Nokogiri::HTML(read_url)
+      rescue OpenURI::HTTPError => e
+        if e.message == '404 Not Found'
+          nil
+        end
+      end
+      # binding.pry
+      # read_url = open(url)
+      # recipe = Nokogiri::HTML(read_url)
     end 
 
     def get_proportions(recipe)
@@ -29,17 +38,21 @@ module Adapters
       recipe.css('.title h1').text
     end
 
-    # def get_image(recipe)
-    #   if recipe.css('.single-photo-recipe a.ico-wrap img')
-    #     recipe.css('.single-photo-recipe a.ico-wrap img').attr('src').value
-    #   else
-    #     ""
-    #   end
-    # end
+    def get_image(recipe)
+      if recipe.css('.single-photo-recipe a.ico-wrap img').any?
+        recipe.css('.single-photo-recipe a.ico-wrap img').attr('src').value
+      else
+        "default_photo.jpg"
+      end
+    end
 
     def get_recipe(url)
       recipe = scrape(url)
-      [get_name(recipe), get_proportions(recipe), get_steps(recipe), get_categories(recipe)]
+      if recipe
+        [get_name(recipe), get_proportions(recipe), get_steps(recipe), get_categories(recipe), get_image(recipe)]
+      else 
+        nil
+      end
     end
   end
 end

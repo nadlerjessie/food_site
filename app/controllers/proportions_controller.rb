@@ -1,3 +1,2 @@
 class ProportionsController < ApplicationController
-
 end

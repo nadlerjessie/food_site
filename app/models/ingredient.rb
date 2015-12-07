@@ -10,4 +10,7 @@
 
 class Ingredient < ActiveRecord::Base
   has_many :proportions
+  validates_presence_of :name
+  validates_length_of :name, minimum: 1
+
 end
