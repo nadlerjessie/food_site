@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
     @recipes = Recipe.find_recipes(current_user)
   end
 
-  def new 
+  def new
     @recipe = Recipe.new
     @recipe.steps.build
     @recipe.proportions.build
@@ -27,29 +27,28 @@ class RecipesController < ApplicationController
     else
       render 'new'
     end
-    binding.pry
-    
   end
 
   def show
-    @recipe = Recipe.find(params[:id]) 
+    @recipe = Recipe.find(params[:id])
     @recipe_view_object = RecipeViewObject.new(@recipe)
     @proportions = @recipe.proportions
-    @steps = @recipe.steps
+    @steps = @recipe.steps.sort
+
+  end
+
+  def update
+    recipe = Recipe.find(params[:id])
+    recipe.update_attributes(recipe_params)
   end
 
   private
-
-    # def recipe_params
-    #   params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :proportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name],:unit_ids => [], :units_attributes => [:name])
-    # end
   def recipe_params
       params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description])
-    end
+  end
 
-def proportion_params
+  def proportion_params
      params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
- end
-
+  end
 
 end

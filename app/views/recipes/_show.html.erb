@@ -2,11 +2,27 @@
   <ul>
     <% @proportion_view_object = ProportionViewObject.new(proportion) %>
     <li><%= @proportion_view_object.display %></li>
+    <%= form_for proportion, remote: true do |f| %>
+      <%= f.text_field :quantity %>
+      <%= f.fields_for :unit do |field| %>
+        <%= field.text_field :name, :value => @proportion_view_object.unit%>
+      <%end%>
+      <%= f.fields_for :ingredient do |field| %>
+        <%= field.text_field :name, :value => @proportion_view_object.ingredient %>
+      <%end%>
+    <%end%>
   </ul>
 <% end %>
 
 <% steps.each_with_index do |step, index| %>
-  <% @step_view_object = StepViewObject.new(step)%>
-  <p><%= @step_view_object.list(index) %></p>
-<% end %>
-
+  <div class='step-description-js'>
+    <div class="step-js">
+      <%= render partial: 'steps/step', locals: {index: index, step: step}%>
+    </div>
+  <%= form_for step, remote: true do |f| %>
+    <%= f.hidden_field :index, value: index %>
+    <%= f.text_area :description %>
+    <%= f.submit %>
+  <%end%>
+  </div>
+<%end%>
