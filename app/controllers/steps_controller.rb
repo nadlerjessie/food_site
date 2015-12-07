@@ -10,6 +10,13 @@ class StepsController < ApplicationController
     # end
   end
 
+  def destroy
+    step = Step.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+    step.destroy
+    redirect_to @recipe
+  end
+
   private
   def step_params
     params.require(:step).permit(:description)

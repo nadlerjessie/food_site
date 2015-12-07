@@ -1,0 +1,19 @@
+<% proportions.each do |proportion| %>
+  <ul class='proportion-list-js'>
+    <div class='proportion-js'>
+      <%= render partial: 'proportions/proportion', locals: {proportion: proportion}%>      
+    </div>
+    <%= form_for proportion, html: {class: 'edit-proportion-js hide'}, remote: true do |f| %>
+      <%= f.hidden_field :recipe_id %>
+      <%= f.text_field :quantity %>
+      <%= f.fields_for :unit do |field| %>
+        <%= field.text_field :name, :value => @proportion_view_object.unit%>
+      <%end%>
+      <%= f.fields_for :ingredient do |field| %>
+        <%= field.text_field :name, :value => @proportion_view_object.ingredient %>
+      <%end%>
+      <%= link_to 'Delete', {controller: 'proportions', action: 'destroy', id: proportion.id, recipe_id: proportion.recipe_id}, method: :delete , data: {confirm: "Are you sure?"}%>
+      <%= f.submit "Save" %>
+    <%end%>
+  </ul>
+<% end %>
