@@ -2,7 +2,19 @@
   <%= form_for @recipe do |f| %>
     <% f.text_field :name %>
   <% end %>
-<button class="btn btn-default favorite"><div><i class="fa fa-heart-o"></i> Favorite</div></button>
+
+<%# if current_user.favorites.where(recipe_id: @recipe.id) != [] %>
+<% if current_user.class == User %>
+  <div class='favorite'>
+    <%= button_to favorites_path(recipe_id: @recipe.id), method: :post, remote: true do %> 
+      <i class="fa fa-heart-o"> Favorite</i> 
+    <% end %> 
+  </div>
+<% end %>
+
+
+ 
+  
 
 <h3><%= @recipe_view_object.list %></h3><h4><%= @recipe_view_object.created_by %></h4>
 <%= image_tag(@recipe.image_url, style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%>

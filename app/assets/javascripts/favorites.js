@@ -1,5 +1,5 @@
 $(function(){
    $(document).on('click', '.favorite', function(){
-   $(this).children().children().toggleClass('fa-heart fa-heart-o')
+   $(this).children().children().children().toggleClass('fa-heart fa-heart-o')
   })
 })
