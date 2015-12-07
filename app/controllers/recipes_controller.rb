@@ -33,12 +33,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe_view_object = RecipeViewObject.new(@recipe)
     @proportions = @recipe.proportions
-    @steps = @recipe.steps
+    @steps = @recipe.steps.sort
+
   end
 
   def update
     recipe = Recipe.find(params[:id])
-    recipe.update_attributes(recipe_params, proportion_params)
+    recipe.update_attributes(recipe_params)
   end
 
   private

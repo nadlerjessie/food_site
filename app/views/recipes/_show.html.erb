@@ -15,9 +15,14 @@
 <% end %>
 
 <% steps.each_with_index do |step, index| %>
-  <%= render partial: 'steps/step', locals: {index: index, step: step}%>
+  <div class='step-description-js'>
+    <div class="step-js">
+      <%= render partial: 'steps/step', locals: {index: index, step: step}%>
+    </div>
   <%= form_for step, remote: true do |f| %>
+    <%= f.hidden_field :index, value: index %>
     <%= f.text_area :description %>
     <%= f.submit %>
   <%end%>
+  </div>
 <%end%>

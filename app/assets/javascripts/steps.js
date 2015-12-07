@@ -1,5 +1,5 @@
-$(function () {
-  $('.edit_step').on('ajax:success', function(event, data, status, xhr){
-    debugger;
+$(function(){
+   $(document).on('ajax:success', '.edit_step', function(e, data, status, xhr){
+   $(this).parent().children('.step-js').html(data.template)
   })
 })
