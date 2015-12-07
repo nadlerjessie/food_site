@@ -5,9 +5,10 @@
 
 <%# if current_user.favorites.where(recipe_id: @recipe.id) != [] %>
 <% if current_user.class == User %>
+  <% favorite_view_object = FavoriteViewObject.new(@recipe, current_user) %>
   <div class='favorite'>
-    <%= button_to favorites_path(recipe_id: @recipe.id), method: :post, remote: true do %> 
-      <i class="fa fa-heart-o"> Favorite</i> 
+    <%= button_to favorites_path(recipe_id: @recipe.id), method: :post do %> 
+     <i class="<%= favorite_view_object.icon_class %>">Favorite</i>
     <% end %> 
   </div>
 <% end %>
