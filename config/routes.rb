@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   post '/recipes/new' => 'recipes#create'
   resources :users
   resources :recipes
+  
+  # post '/recipe/:id/favorites' => 'favorites#favorited?'
+
+  resources :favorites, only: [:create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

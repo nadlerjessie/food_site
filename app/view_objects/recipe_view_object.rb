@@ -25,4 +25,12 @@ class RecipeViewObject
       recipe.name
     end
   end
+
+  def image_url
+    if recipe.image_url
+      recipe.image_url
+    else
+      "default_photo.jpg"
+    end
+  end
 end

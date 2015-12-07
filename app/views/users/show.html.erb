@@ -1,1 +1,18 @@
-hello
+<div class='row-fluid'>
+  <div class='span6'>
+    <h2>My Recipes:</h2>
+    <% @user.recipes.each do |recipe | %>
+      <% recipe_view_object = RecipeViewObject.new(recipe) %>
+      <div class="inline-block"><%= link_to recipe.name, recipe_path(recipe)%></div>
+       <%= image_tag(recipe_view_object.image_url, style: "width:152px;height:114px;", alt: recipe_view_object.image_alt)%>
+    <% end %>
+  </div>
+  <div class='span6'>
+    <h2>My Favorites:</h2>
+    <% @user.favorites.each do |favorite | %>
+      <% recipe_view_object = RecipeViewObject.new(favorite.recipe) %>
+      <div class="inline-block"><%= link_to favorite.recipe.name, recipe_path(favorite.recipe)%></div>
+       <%= image_tag(recipe_view_object.image_url, style: "width:152px;height:114px;", alt: recipe_view_object.image_alt)%>
+    <% end %>
+  </div>
+</div>

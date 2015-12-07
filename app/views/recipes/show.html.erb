@@ -2,11 +2,20 @@
 <%= form_for @recipe, html: {class: 'edit-recipe-js hide'} do |f| %>
   <% f.text_field :name %>
 <% end %>
+
+<% if current_user.class == User %>
+  <% favorite_view_object = FavoriteViewObject.new(@recipe, current_user) %>
+  <div class='favorite'>
+    <%= button_to favorites_path(recipe_id: @recipe.id), method: :post do %> 
+     <i class="<%= favorite_view_object.icon_class %>">Favorite</i>
+    <% end %> 
+  </div>
+<% end %>
+
 <h3><%= @recipe_view_object.list %></h3>
 <h4><%= @recipe_view_object.created_by %></h4>
-<%= image_tag(@recipe.image_url, style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%> 
+<%= image_tag(@recipe_view_object.image_url, style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%> 
 
 <div><%= render partial: 'proportions_show', locals: {proportions: @proportions} %></div>
 <div><%= render partial: 'steps_show', locals: {steps: @steps} %></div>
-
 
