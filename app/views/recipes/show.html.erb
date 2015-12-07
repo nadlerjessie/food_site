@@ -19,4 +19,6 @@
 <div><%= render partial: 'proportions_show', locals: {proportions: @proportions} %></div>
 <div><%= render partial: 'steps_show', locals: {steps: @steps} %></div>
 
-<%= button_to "Delete recipe", recipe_path(recipe: @recipe), method: :delete, data: {confirm: "Are you sure?"}%>
+<% if current_user.class == User && current_user.id == @recipe.user.id %>
+  <%= button_to "Delete recipe", recipe_path(recipe: @recipe), method: :delete, data: {confirm: "Are you sure?"}%>
+<% end %>
