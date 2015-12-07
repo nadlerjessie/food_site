@@ -62,11 +62,6 @@ ActiveRecord::Schema.define(version: 20151207021203) do
     t.string   "note"
   end
 
-  create_table "searches", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "steps", force: :cascade do |t|
     t.string   "description"
     t.integer  "recipe_id"

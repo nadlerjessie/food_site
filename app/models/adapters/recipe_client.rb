@@ -20,21 +20,25 @@ module Adapters
       proportions.each do |proportion|
         new_proportion = recipe.proportions.build
         new_proportion.quantity = 0
-        new_proportion.unit = Unit.new 
+        new_proportion.unit = Unit.new
         proportion.each_with_index do |proportion_piece, i|
           if conversions[proportion_piece]
             new_proportion.quantity += conversions[proportion_piece]
             new_proportion.unit.name = proportion[i+1]
-            ingredient = Ingredient.find_or_create_by(name: (proportion[(i+2)..-1]).join(" "))
-            new_proportion.ingredient = ingredient
+            ingredient = Ingredient.find_or_initialize_by(name: (proportion[(i+2)..-1]).join(" "))
+            if ingredient.valid?
+              new_proportion.ingredient = ingredient
+            end
             break
           elsif proportion_piece.to_i != 0
             new_proportion.quantity += proportion_piece.to_i
             new_proportion.unit.name = proportion[i+1]
-            ingredient = Ingredient.find_or_create_by(name: (proportion[(i+2)..-1]).join(" "))
-            new_proportion.ingredient = ingredient
+            ingredient = Ingredient.find_or_initialize_by(name: (proportion[(i+2)..-1]).join(" "))
+            if ingredient.valid?
+              new_proportion.ingredient = ingredient
+            end
             break
-          else 
+          else
             new_proportion.quantity = nil
             new_proportion.unit = nil
             ingredient = Ingredient.find_or_create_by(name: proportion.join(" "))

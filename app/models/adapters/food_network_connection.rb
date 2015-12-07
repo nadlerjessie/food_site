@@ -1,8 +1,7 @@
 require 'open-uri'
 module Adapters
   class FoodNetworkConnection
-
-    attr_reader :connection 
+    attr_reader :connection
 
     def initialize
       @connection = self.class
@@ -20,7 +19,7 @@ module Adapters
       # binding.pry
       # read_url = open(url)
       # recipe = Nokogiri::HTML(read_url)
-    end 
+    end
 
     def get_proportions(recipe)
       proprotions = recipe.css('.bd .ingredients').children.children.css('li').map {|proportion| proportion.text.split(" ")}
@@ -50,7 +49,7 @@ module Adapters
       recipe = scrape(url)
       if recipe
         [get_name(recipe), get_proportions(recipe), get_steps(recipe), get_categories(recipe), get_image(recipe)]
-      else 
+      else
         nil
       end
     end
