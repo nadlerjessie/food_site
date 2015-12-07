@@ -1,7 +1,9 @@
 <% proportions.each do |proportion| %>
-  <ul>
-    <% @proportion_view_object = ProportionViewObject.new(proportion) %>
-    <li><%= @proportion_view_object.display %></li>
+  <ul class='proportion-list-js'>
+    <div class='proportion-js'>
+      <% @proportion_view_object = ProportionViewObject.new(proportion) %>
+      <li><%= @proportion_view_object.display %></li>
+    </div>
     <%= form_for proportion, remote: true do |f| %>
       <%= f.text_field :quantity %>
       <%= f.fields_for :unit do |field| %>
@@ -19,7 +21,7 @@
     <div class="step-js">
       <%= render partial: 'steps/step', locals: {index: index, step: step}%>
     </div>
-  <%= form_for step, remote: true do |f| %>
+  <%= form_for step, html: {class: 'edit-step-js hide'}, remote: true do |f| %>
     <%= f.hidden_field :index, value: index %>
     <%= f.text_area :description %>
     <%= f.submit %>
