@@ -13,6 +13,16 @@ class RecipeViewObject
   def created_by
     if recipe.user
       "From #{recipe.user.name}'s Kitchen"
+    elsif recipe.note
+      "From the Food Network Collection: #{recipe.note}"
+    end
+  end
+
+  def image_alt
+    if recipe.image_url == "default_photo.jpg"
+      "Credit: Free Food Photos"
+    else
+      recipe.name
     end
   end
 end
