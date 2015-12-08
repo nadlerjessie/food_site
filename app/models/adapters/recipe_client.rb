@@ -15,7 +15,7 @@ module Adapters
       end
     end
 
-    def set_proportion_starter_attributes(proportion, recipe)
+    def set_proportion_with_initialized_attributes(proportion, recipe)
       new_proportion = recipe.proportions.build
       new_proportion.quantity = 0
       new_proportion.unit = Unit.new
@@ -46,24 +46,29 @@ module Adapters
       proportion_piece.to_i != 0
     end
 
+    def set_proportion_attributes_by_quantity_type(proportion_array, new_proportion)
+      conversions = { "1/8" => 0.125, "1/4" => 0.25, "1/3" => 0.333, "1/2" => 0.5, "2/3" => 0.667, "3/4" => 0.75}
+      proportion_array.each_with_index do |proportion_piece, i|
+        if first_item_in_conversions_table?(proportion_piece)
+          new_proportion.quantity += conversions[proportion_piece]
+          add_unit_and_ingredient_to_proportion(new_proportion, proportion_array, i)
+          break
+        elsif first_item_integer?(proportion_piece)
+          new_proportion.quantity += proportion_piece.to_i
+          add_unit_and_ingredient_to_proportion(new_proportion, proportion_array, i)
+          break
+        else
+          set_proportion_with_ingredient_only(new_proportion, proportion_array)
+          break
+        end
+      end
+    end
+
     def build_proportions(recipe, proportions)
       conversions = { "1/8" => 0.125, "1/4" => 0.25, "1/3" => 0.333, "1/2" => 0.5, "2/3" => 0.667, "3/4" => 0.75}
-      proportions.each do |proportion|
-        new_proportion = set_proportion_starter_attributes(proportion, recipe)
-        proportion.each_with_index do |proportion_piece, i|
-          if first_item_in_conversions_table?(proportion_piece)
-            new_proportion.quantity += conversions[proportion_piece]
-            add_unit_and_ingredient_to_proportion(new_proportion, proportion, i)
-            break
-          elsif first_item_integer?(proportion_piece)
-            new_proportion.quantity += proportion_piece.to_i
-            add_unit_and_ingredient_to_proportion(new_proportion, proportion, i)
-            break
-          else
-            set_proportion_with_ingredient_only(new_proportion, proportion)
-            break
-          end
-        end
+      proportions.each do |proportion_array|
+        new_proportion = set_proportion_with_initialized_attributes(proportion_array, recipe)
+        set_proportion_attributes_by_quantity_type(proportion_array, new_proportion)
         new_proportion.save
       end
       recipe
