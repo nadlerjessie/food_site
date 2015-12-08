@@ -1,9 +1,9 @@
 $(function(){
 
-  $('.proportion-item').on("keypress", function(event) {
+  $(document).on("keypress", '.proportion-item', function(event) {
     return event.keyCode != 13;
   });
-  
+
   $(document).on('click', '.add-proportion', function(event){
     event.preventDefault();
   var value = $('.proportion-item').last().data('proportion-id') + 1
