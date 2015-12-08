@@ -13,7 +13,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    binding.pry
     @recipe = Recipe.new(recipe_params)
     proportion_params['proportions_attributes'].each do | i, proportion |
       @ingredient = proportion_params['ingredients_attributes'][i]
@@ -41,6 +40,11 @@ class RecipesController < ApplicationController
     recipe = Recipe.find(params[:id])
     recipe.update_attributes(recipe_params)
     redirect_to recipe
+  end
+
+  def destroy
+    Recipe.destroy(params['id'])
+    redirect_to recipes_path
   end
 
   private
