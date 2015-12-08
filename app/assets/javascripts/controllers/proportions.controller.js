@@ -13,4 +13,19 @@ $(function(){
 
   })
 
+  $(document).on('ajax:success', '.add-proportion-from-show-js', function(e, data, status, xhr){
+    var quantity = data.quantity;
+    var unit = data.unit;
+    var ingredient = data.ingredient;
+    var cloned_proportion = $('.proportion-js').clone().get(0);
+    var new_proportion = $(cloned_proportion).find('li').text(data.quantity + " " + data.unit + " " + data.ingredient);
+    debugger;
+    $('.proportion-show-partial-js').append($(new_proportion));
+    var form_fields = $('.add-proportion-from-show-js').find('input:text');
+    form_fields.first().val("")
+    $(form_fields.get(1)).val("")
+    form_fields.last().val("")
+  });
 });
+
+
