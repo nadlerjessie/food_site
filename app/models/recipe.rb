@@ -28,6 +28,10 @@ class Recipe < ActiveRecord::Base
   validates_length_of :proportions, minimum: 1
   validates_length_of :steps, minimum: 1
 
+  def self.find_top_favorited(num)
+    joins(:favorites).select('recipes.*, count(favorites.id) as fav_count').group('recipes.id').order('fav_count desc').limit(num)
+  end
+
   def self.search_by_user_permissions(search, current_user)
     joins(:ingredients).where("((lower(recipes.name) like ? OR ingredients.name like ? ) AND public_recipe = ?) OR ((lower(recipes.name) like ? OR ingredients.name like ? ) AND user_id = ?)", search, search, true, search, search, current_user.id).uniq
   end

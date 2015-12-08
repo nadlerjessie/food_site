@@ -1,12 +1,6 @@
 <div class='container'>
 <div class='page-view-container'>
 
-<% flash.each do |type, message| %>
-  <div class="alert <%= bootstrap_class_for(type) %> fade in">
-    <%= message %>
-  </div>
-<% end %>
-
 <h1 class='recipe-name-js'><%= @recipe.name %></h1>
 <%= form_for @recipe, html: {class: 'edit-recipe-js hide'} do |f| %>
   <% f.text_field :name %>
