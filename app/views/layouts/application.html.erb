@@ -9,15 +9,10 @@
 <body>
 
 <%= render 'layouts/nav' %>
-<% if current_user.class == User %>
-  <h3>Get Cookin', <%= current_user.name.capitalize %>!</h3>
-<% end %>
 
-  <div class='container'>
-    <p class="notice"><%= notice %></p>
-   <!--  <p class="alert"><%= alert %></p> -->
-    <%= yield %>
-  </div>
-
+<p class="notice"><%= notice %></p>
+   
+<%= yield %>
+  
 </body>
 </html>

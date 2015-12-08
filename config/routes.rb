@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :units
   resources :ingredients
   resources :steps
-  root to: 'users#new'
+  root to: 'welcome#index'
   get '/login' => 'sessions#new'
   post '/sessions' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
