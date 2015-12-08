@@ -43,7 +43,6 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     Recipe.destroy(params['id'])
     redirect_to recipes_path
   end
