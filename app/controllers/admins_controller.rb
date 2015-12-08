@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
   before_action :admin_required
     
-  def analytics
+  def top_ingredients
     @rankings = Ingredient.most_used
     respond_to do |format|
       format.html

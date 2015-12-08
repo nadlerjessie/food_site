@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   
   get 'admin/most_viewed' => 'admins#most_viewed'
   get 'admin/most_favorited' => 'admins#most_favorited'
-  get 'admin/analytics' => 'admins#analytics'
+  get 'admin/top_ingredients' => 'admins#top_ingredients'
   # post '/recipe/:id/favorites' => 'favorites#favorited?'
 
   resources :favorites, only: [:create, :update, :destroy]

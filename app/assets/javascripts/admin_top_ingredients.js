@@ -6,7 +6,7 @@ var dataSetProperties = {
   highlightStroke: 'rgba(220,220,220,1)'
 }
 
-$(function() {
+$(document).on('page:change', function() {
   getIngredientCount(ingredientSuccess);
 });
 
@@ -41,7 +41,7 @@ function chartData(categories, inputData) {
 
 function getIngredientCount(callback){
   $.ajax({
-    url: '/admin/analytics',
+    url: '/admin/top_ingredients',
     method: "GET",
     dataType: "JSON"
   }).success(function(data){
