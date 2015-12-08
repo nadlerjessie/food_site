@@ -25,10 +25,6 @@ $(function(){
     form_fields.first().val("")
     $(form_fields.get(1)).val("")
     form_fields.last().val("")
-
-    // var proportion_html = data.quantity + " " + data.unit + " " + data.ingredient
-    // var new_proportion = "<ul class='proportion-list-js'><div class='proportion-js'><li>" + proportion_html + "</li></div></ul>"
-    // var proportion_html = $(cloned_proportion).find('li').text(data.quantity + " " + data.unit + " " + data.ingredient);
   });
 });
 
