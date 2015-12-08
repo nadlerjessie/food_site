@@ -1,0 +1,14 @@
+<h3>Contact your fellow Admins:</h3>
+<% @admins.each do |admin| %>
+  <p><%= admin.name %> -- <%= admin.email %></p>
+<% end %>
+
+<h3>Users:</h3>
+<% @users.each do |user| %>
+  <p><%= user.name %></p>
+<% end %>
+
+<h3>Resources:</h3>
+<%= link_to 'Most Favorited', admin_most_favorited_path %> |
+<%= link_to 'Most Viewed', admin_most_viewed_path %> |
+<%= link_to 'Top Ingredients', admin_top_ingredients_path %>

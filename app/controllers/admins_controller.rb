@@ -1,5 +1,10 @@
 class AdminsController < ApplicationController
   before_action :admin_required
+
+  def dashboard
+    @admins = User.where(admin: true).where.not(id: current_user.id)
+    @users = User.where(admin: false)
+  end
     
   def top_ingredients
     @rankings = Ingredient.most_used
