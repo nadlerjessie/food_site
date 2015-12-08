@@ -36,6 +36,21 @@ class Recipe < ActiveRecord::Base
     where("public_recipe = true OR user_id = #{current_user.id}")
   end
 
+  def self.num_of_ingredient
+    joins(:ingredients).group('ingredients.name').order('count_id desc').count('id')
+  end
+
+  def self.most_used_ingredients
+    ascending_array = Recipe.num_of_ingredient.sort_by do |ingredient, count|
+      count
+    end
+    top_ten = ascending_array.reverse[0..9]
+    x = top_ten.each_with_object([]) do |ingredient, array|
+      hash = {name: ingredient[0], count: ingredient[1]}
+      array.push(hash)
+    end
+  end
+
   def create_proportion(proportion, ingredient, unit)
     @proportion = self.proportions.build(proportion)
     @proportion.ingredient = Ingredient.find_or_create_by(ingredient)

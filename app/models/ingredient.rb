@@ -13,4 +13,14 @@ class Ingredient < ActiveRecord::Base
   validates_presence_of :name
   validates_length_of :name, minimum: 1
 
+  def self.top_ten_ingredients
+  end
+
+  def self.num_of_recipes
+    # join on the recipes table and select ingredients by name, and return the number
+    # of times that ingredient appears in a recipe
+    binding.pry
+    # join(:recipes).where('ingredient.name = self.name')
+  end
+
 end
