@@ -12,7 +12,7 @@ $(function(){
 
   })
 
-  $('.proportion-item').on("keypress", function(event) {
+  $(document).on("keypress", '.proportion-item', function(event) {
     return event.keyCode != 13;
   });
 

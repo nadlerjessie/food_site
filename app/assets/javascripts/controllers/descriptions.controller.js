@@ -13,8 +13,10 @@ $(function(){
 
   })
 
-  $('.description-item').on("keypress", function(event) {
+  $(document).on("keypress", '.description-item' function(event) {
+    debugger; 
     return event.keyCode != 13;
   });
+
 
 });
