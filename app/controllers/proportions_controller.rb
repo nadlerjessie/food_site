@@ -12,6 +12,7 @@ class ProportionsController < ApplicationController
   def update
     proportion = Proportion.find(params[:id])
     @recipe = Recipe.find(proportion_params[:recipe_id])
+    proportions = @recipe.proportions
     if @recipe.user_id == current_user.id 
       proportion.update(quantity: proportion_params[:quantity])
       proportion.ingredient_id = Ingredient.find_or_create_by(proportion_params[:ingredient]).id
@@ -21,7 +22,8 @@ class ProportionsController < ApplicationController
         render json: {template: html_string}
       end
     else
-      redirect_to @recipe, notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
+      html_string = render_to_string "recipes/_proportions_show", locals: {proportions: proportions}, layout: false
+      render json: {template: html_string}
     end
   end
 

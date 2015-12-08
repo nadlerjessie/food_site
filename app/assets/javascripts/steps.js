@@ -1,5 +1,6 @@
 $(function(){
   $(document).on('ajax:success', '.edit-step-js', function(e, data, status, xhr){
+    debugger;
     $(this).parent().children('.step-js').html(data.template)
     $(this).addClass('hide')
     $(this).parent().children('.step-js').removeClass('hide')
@@ -11,6 +12,7 @@ $(function(){
   })
 
   $(document).on('ajax:success', '.edit-step-js', function(e, data, status, xhr){
+    debugger;
     $('.step-show-partial-js').empty().append($(data.template))
   })
 })
