@@ -17,13 +17,15 @@ class StepsController < ApplicationController
   def destroy
     step = Step.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
+    steps = @recipe.steps
      if @recipe.user_id == current_user.id 
-        steps = @recipe.steps
         step.destroy
         html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
         render json: {template: html_string}
-      else
-        redirect_to @recipe, notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
+       else
+        html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
+        render json: {template: html_string}
+        # flash.now[:message] = "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
       end
   end
 
