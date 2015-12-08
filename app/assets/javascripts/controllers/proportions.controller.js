@@ -12,4 +12,8 @@ $(function(){
 
   })
 
+  $('.proportion-item').on("keypress", function(event) {
+    return event.keyCode != 13;
+  });
+
 });
