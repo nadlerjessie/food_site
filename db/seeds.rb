@@ -17,7 +17,7 @@ Favorite.destroy_all
 #######################
 admin = User.create(name: 'Admin', email: 'admin@flatironschool.com', password: 'jeffkatz', password_confirmation: 'jeffkatz', public_profile: true, admin: true)
 
-admin.update(public_profile: false)
+### need to set admin to public profile to false---not persisting unless true
 
 #######################
 users = User.create([{name: 'Jeffers', email: 'clevergirl@jurassicpark.gov', password: 'password', password_confirmation: 'password', public_profile: true},
