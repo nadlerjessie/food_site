@@ -13,8 +13,12 @@ class Ingredient < ActiveRecord::Base
   validates_presence_of :name
   validates_length_of :name, minimum: 1
 
+  def self.filter_results
+    Recipe.num_of_ingredient.delete_if {|name, count| name.downcase.include?("salt")|| name.downcase.include?("juiced")|| name.downcase.include?("garlic")||name.downcase.include?("pepper")||name.downcase.include?("oil")}
+  end
+
   def self.most_used
-    ascending_array = Recipe.num_of_ingredient.sort_by do |ingredient, count|
+    ascending_array = Ingredient.filter_results.sort_by do |ingredient, count|
       count
     end
     top_ten = ascending_array.reverse[0..9]
