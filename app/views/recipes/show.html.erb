@@ -13,7 +13,7 @@
 
 <h3><%= @recipe_view_object.list %></h3>
 <h4><%= @recipe_view_object.created_by %></h4>
-<%= image_tag(@recipe_view_object.image_url, style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%>
+<%= image_tag(@recipe_view_object.image_url, class: 'img-polaroid', style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%>
 
 <div>
 <%= form_for Proportion.new, html: {class: 'add-proportion-from-show-js'}, remote: true do |f| %>
