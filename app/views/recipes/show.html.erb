@@ -4,11 +4,8 @@
 <% end %>
 
 <% if current_user.class == User %>
-  <% favorite_view_object = FavoriteViewObject.new(@recipe, current_user) %>
-  <div class='favorite'>
-    <%= button_to favorites_path(recipe_id: @recipe.id), method: :post do %> 
-     <i class="<%= favorite_view_object.icon_class %>">Favorite</i>
-    <% end %> 
+  <div class='favorites-js'>
+  <%= render partial: 'favorites/favorite', locals: {recipe: @recipe, user: current_user} %>
   </div>
 <% end %>
 

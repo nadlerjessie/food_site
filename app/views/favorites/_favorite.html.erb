@@ -1,0 +1,6 @@
+<% favorite_view_object = FavoriteViewObject.new(recipe, user) %>
+<div class='favorite'>
+  <%= button_to favorites_path(recipe_id: recipe.id), class: 'favorite', method: :post, remote: true do %> 
+     <i class="<%= favorite_view_object.icon_class %>">Favorite</i>
+  <% end %> 
+</div>

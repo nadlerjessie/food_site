@@ -1,5 +1,5 @@
-// $(function(){
-//    $(document).on('ajax:success', '.favorite', function(){
-//    // $(this).children().children().children().toggleClass('fa-heart fa-heart-o')
-//   })
-// })
+$(function(){
+  $(document).on('ajax:success', '.favorite', function(e, data, status, xhr){
+    $('.favorites-js').html(data.template) 
+  })
+})
