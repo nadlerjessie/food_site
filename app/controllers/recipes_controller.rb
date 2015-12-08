@@ -31,11 +31,15 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe.view_count += 1
-    @recipe.save
-    @recipe_view_object = RecipeViewObject.new(@recipe)
-    @proportions = @recipe.proportions.sort
-    @steps = @recipe.steps.sort
+    if authorized_recipe_view?(@recipe)
+      @recipe.view_count += 1
+      @recipe.save
+      @recipe_view_object = RecipeViewObject.new(@recipe)
+      @proportions = @recipe.proportions.sort
+      @steps = @recipe.steps.sort
+    else
+      redirect_to recipes_path
+    end
   end
 
   def update
@@ -58,4 +62,7 @@ class RecipesController < ApplicationController
      params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
   end
 
+  def authorized_recipe_view?(recipe)
+    Recipe.find_recipes(current_user).include?(recipe)
+  end
 end

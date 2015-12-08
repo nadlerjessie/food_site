@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user
   
   private
+     def admin_required
+      if !current_user.admin
+        redirect_to :back, :notice => "You are not authorized to visit that page"
+      end
+    end
+
     def login_required
       if !logged_in?
         redirect_to login_path, :notice => "You need to login"
