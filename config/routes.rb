@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :recipes
   
   get 'admin/most_viewed' => 'admins#most_viewed'
+  get 'admin/most_favorited' => 'admins#most_favorited'
   get 'admin/analytics' => 'admins#analytics'
   # post '/recipe/:id/favorites' => 'favorites#favorited?'
 

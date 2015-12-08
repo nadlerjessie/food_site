@@ -10,8 +10,11 @@ class AdminsController < ApplicationController
   end
 
   def most_viewed
-    @most_viewed_recipes = Recipe.most_viewed(10)
-    render 'admins/most_viewed'
+    @most_viewed_recipes = Recipe.most_viewed(12)
+  end
+
+  def most_favorited
+    @most_favorited_recipes = Recipe.most_favorited(12)
   end
 
 
