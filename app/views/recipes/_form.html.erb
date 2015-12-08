@@ -7,9 +7,9 @@
   <div class='proportions-list'>
     <div class='proportion-item' data-proportion-id='0'>
       <%= f.fields_for :proportions do |proportion| %>
-              Quantity: <%= proportion.text_field :quantity %>
+           Quantity: <%= proportion.text_field :quantity, class: "quantity-input-js" %> 
         <%= f.fields_for :units do |unit| %>
-              Unit: <%= unit.text_field :name %>
+              Unit: <%= unit.text_field :name%>
           <%= f.fields_for :ingredients do |ingredient| %>
               Ingredient: <%= ingredient.text_field :name %>
           <%end%>
