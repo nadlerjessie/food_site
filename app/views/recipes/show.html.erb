@@ -1,43 +1,50 @@
 <div class='container'>
-<div class='page-view-container'>
-<h1 class='recipe-name-js'><%= @recipe.name %></h1>
-<%= form_for @recipe, html: {class: 'edit-recipe-js hide'} do |f| %>
-  <% f.text_field :name %>
-<% end %>
+  <div class='page-view-container'>
+    <h1 class='recipe-name-js'><%= @recipe.name %></h1>
+    <%= form_for @recipe, html: {class: 'edit-recipe-js hide'} do |f| %>
+      <% f.text_field :name %>
+    <% end %>
 
-<% if current_user.class == User %>
-  <div class='favorites-js'>
-  <%= render partial: 'favorites/favorite', locals: {recipe: @recipe, user: current_user} %>
+    <% if current_user.class == User %>
+      <div class='favorites-js'>
+      <%= render partial: 'favorites/favorite', locals: {recipe: @recipe, user: current_user} %>
+      </div>
+    <% end %>
+
+    <h3><%= @recipe_view_object.list %></h3>
+    <h4><%= @recipe_view_object.created_by %></h4>
+    <%= image_tag(@recipe_view_object.image_url, class: 'img-polaroid', style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%>
+
+    <div>
+      <% if @recipe.user %>
+        <% if current_user == @recipe.user %>
+          <button class='display-add-ingredient-form-js'>Add Ingredient</button> 
+        <% end %>
+      <% end %>
+
+      <%= form_for Proportion.new, html: {class: 'add-proportion-from-show-js hide'}, remote: true do |f| %>
+        <%= f.hidden_field :recipe_id, value: @recipe.id %>
+          <%= f.text_field :quantity, class: 'input-mini', placeholder: "Quantity" %>
+        <%= f.fields_for :unit do |field| %>
+          <%= field.text_field :name, class: 'input-mini', placeholder: "Unit" %>
+        <% end %>
+        <%= f.fields_for :ingredient do |field| %>
+          <%= field.text_field :name, placeholder: "Ingredient" %>
+        <% end %>
+        <%= f.submit "Save" %>
+      <% end %>
+    </div>
+
+    <div class='proportion-show-partial-js'><%= render partial: 'proportions_show', locals: {proportions: @proportions} %></div>
+    <div class="step-show-partial-js"><%= render partial: 'steps_show', locals: {steps: @steps} %></div>
+    </div>
   </div>
-<% end %>
 
-<h3><%= @recipe_view_object.list %></h3>
-<h4><%= @recipe_view_object.created_by %></h4>
-<%= image_tag(@recipe_view_object.image_url, class: 'img-polaroid', style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%>
-
-<div>
-<% if current_user == @recipe.user %>
-  <button class='display-add-ingredient-form-js'>Add Ingredient</button> 
-<% end %>
-
-<%= form_for Proportion.new, html: {class: 'add-proportion-from-show-js hide'}, remote: true do |f| %>
-  <%= f.hidden_field :recipe_id, value: @recipe.id %>
-    <%= f.text_field :quantity, class: 'input-mini', placeholder: "Quantity" %>
-  <%= f.fields_for :unit do |field| %>
-    <%= field.text_field :name, class: 'input-mini', placeholder: "Unit" %>
+<% if @recipe.user %>
+  <% if current_user == @recipe.user %>
+    <%= button_to "Delete recipe", recipe_path(recipe: @recipe), method: :delete, data: {confirm: "Are you sure?"}%>
   <% end %>
-  <%= f.fields_for :ingredient do |field| %>
-    <%= field.text_field :name, placeholder: "Ingredient" %>
-  <% end %>
-  <%= f.submit "Save" %>
 <% end %>
-</div>
-<div class='proportion-show-partial-js'><%= render partial: 'proportions_show', locals: {proportions: @proportions} %></div>
-<div><%= render partial: 'steps_show', locals: {steps: @steps} %></div>
-</div>
-</div>
 
-<% if current_user == @recipe.user %>
-  <%= button_to "Delete recipe", recipe_path(recipe: @recipe), method: :delete, data: {confirm: "Are you sure?"}%>
-<% end %>
+
 

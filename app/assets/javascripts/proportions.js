@@ -20,6 +20,10 @@ $(function(){
     }
   })
 
+  $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
+    $('.proportion-show-partial-js').empty().append($(data.template))
+  })
+
   $(document).on('dblclick', '.proportion-list-js', function() {
     $(this).children('.edit-proportion-js').removeClass('hide')
     $(this).children('.proportion-js').addClass('hide')
