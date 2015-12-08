@@ -10,8 +10,4 @@ $(function(){
     $(this).next().removeClass('hide')
   })
 
-  // $(document).ready(function() {
-  //   $('.tooltip').tooltipster();
-  // });
-
 })

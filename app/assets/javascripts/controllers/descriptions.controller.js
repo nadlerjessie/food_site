@@ -1,6 +1,10 @@
 $(function(){
 
-  $('.add-description').on('click', function(event){
+  $(document).on("keypress", '.description-item', function(event) {
+    return event.keyCode != 13;
+  });
+
+  $(document).on('click', '.add-description', function(event){
     event.preventDefault();
 
   var value = $('.description-item').last().data('description-id') + 1
@@ -11,10 +15,9 @@ $(function(){
 
     $('.descriptions-list').append(html);
 
+
   })
 
-  $('.description-item').on("keypress", function(event) {
-    return event.keyCode != 13;
-  });
+
 
 });
