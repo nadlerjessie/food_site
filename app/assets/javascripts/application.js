@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.tooltipster.min.js
 //= require turbolinks
 //= require handlebars
 //= require_tree .
