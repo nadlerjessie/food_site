@@ -1,6 +1,6 @@
 $(function(){
 
-  $('.add-description').on('click', function(event){
+  $(document).on('click', '.add-description', function(event){
     event.preventDefault();
 
   var value = $('.description-item').last().data('description-id') + 1
