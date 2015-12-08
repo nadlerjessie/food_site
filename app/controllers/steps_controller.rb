@@ -13,8 +13,12 @@ class StepsController < ApplicationController
   def destroy
     step = Step.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
-    step.destroy
-    redirect_to @recipe
+     if @recipe.user_id == current_user.id 
+        step.destroy
+        redirect_to @recipe
+      else
+        redirect_to @recipe, notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
+      end
   end
 
   private

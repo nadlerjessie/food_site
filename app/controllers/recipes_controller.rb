@@ -13,7 +13,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    binding.pry
     @recipe = Recipe.new(recipe_params)
     proportion_params['proportions_attributes'].each do | i, proportion |
       @ingredient = proportion_params['ingredients_attributes'][i]
