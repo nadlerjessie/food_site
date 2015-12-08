@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   post '/recipes/new' => 'recipes#create'
   resources :users
   resources :recipes
-  get "most_common_ingredients" => "ingredients#most_common_ingredients"
-
+  
+  get 'admin/analytics' => 'admins#analytics'
   # post '/recipe/:id/favorites' => 'favorites#favorited?'
 
   resources :favorites, only: [:create, :update, :destroy]
