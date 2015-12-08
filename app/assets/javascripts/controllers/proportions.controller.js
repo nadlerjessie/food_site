@@ -18,13 +18,15 @@ $(function(){
     var unit = data.unit;
     var ingredient = data.ingredient;
     var cloned_proportion = $('.proportion-js').clone().get(0);
-    var new_proportion = $(cloned_proportion).find('li').text(data.quantity + " " + data.unit + " " + data.ingredient);
-    debugger;
+    var proportion_html = data.quantity + " " + data.unit + " " + data.ingredient
+    var new_proportion = "<ul class='proportion-list-js'><div class='proportion-js'><li>" + proportion_html + "</li></div></ul>"
     $('.proportion-show-partial-js').append($(new_proportion));
     var form_fields = $('.add-proportion-from-show-js').find('input:text');
     form_fields.first().val("")
     $(form_fields.get(1)).val("")
     form_fields.last().val("")
+
+    // var proportion_html = $(cloned_proportion).find('li').text(data.quantity + " " + data.unit + " " + data.ingredient);
   });
 });
 
