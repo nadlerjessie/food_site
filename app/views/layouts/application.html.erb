@@ -4,7 +4,7 @@
   <title>Cookbook</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %> 
 </head>
 <body>
 
@@ -12,7 +12,7 @@
 <% if current_user.class == User %>
   <h3>Get Cookin', <%= current_user.name.capitalize %>!</h3>
 <% end %>
-  
+
   <div class='container'>
     <p class="notice"><%= notice %></p>
    <!--  <p class="alert"><%= alert %></p> -->

@@ -13,5 +13,6 @@
  *= require_tree .
  *= require_self
  *= require_extra.scss
-*= require font-awesome
+ *= require tooltipster
+ *= require font-awesome
  */

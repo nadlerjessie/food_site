@@ -1,17 +1,17 @@
 
 <%= form_for @recipe do |f| %>
 
-  Recipe name: <%= f.text_field :name %>
+  <%= f.text_field :name, placeholder: 'Recipe Name' %>
   <br><br>
 
   <div class='proportions-list'>
     <div class='proportion-item' data-proportion-id='0'>
       <%= f.fields_for :proportions do |proportion| %>
-           Quantity: <%= proportion.text_field :quantity, class: "quantity-input-js" %> 
+          <%= proportion.text_field :quantity, class: "quantity-input-js", placeholder: 'Quantity' %>
         <%= f.fields_for :units do |unit| %>
-              Unit: <%= unit.text_field :name%>
+            <%= unit.text_field :name, placeholder: 'Unit'%>
           <%= f.fields_for :ingredients do |ingredient| %>
-              Ingredient: <%= ingredient.text_field :name %>
+              <%= ingredient.text_field :name, placeholder: 'Ingredient' %>
           <%end%>
         <%end%>
       <%end%>
@@ -26,16 +26,14 @@
   <div class='descriptions-list'>
     <div class='description-item' data-description-id='0'>
       <%= f.fields_for :steps do |step_form| %>
-        <%= step_form.label :description%>
-        <%= step_form.text_field :description %>
+        <%= step_form.text_field :description, placeholder: 'Description' %>
       <% end %>
     </div>
   </div>
   <div>
     <button class='add-description'>Add Step</button>
   </div>
-
-
+    <br>
   <p>
  <%= f.label :public_recipe, "Choose to make your recipe public or private" %>
    <%= f.select :public_recipe, [['Public', true], ['Private', false]], :prompt => 'Select' %>
