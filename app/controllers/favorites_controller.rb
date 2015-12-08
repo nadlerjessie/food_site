@@ -6,11 +6,11 @@ class FavoritesController < ApplicationController
     if favorited?(user, recipe)
       favorite = Favorite.find_by(recipe_id: recipe.id, user_id: user.id)
       favorite.destroy
-      html_string = render_to_string "recipes/_favorites_show", locals: {recipe: recipe, user: user}, layout: false
+      html_string = render_to_string "favorites/_favorite", locals: {recipe: recipe, user: user}, layout: false
       render json: {template: html_string}
     else
       favorite = Favorite.create(recipe_id: recipe.id, user_id: user.id)
-      html_string = render_to_string "recipes/_favorites_show", locals: {recipe: recipe, user: user}, layout: false
+      html_string = render_to_string "favorites/_favorite", locals: {recipe: recipe, user: user}, layout: false
       render json: {template: html_string}
     end
   end
