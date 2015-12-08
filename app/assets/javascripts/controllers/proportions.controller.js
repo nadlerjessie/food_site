@@ -1,5 +1,9 @@
 $(function(){
 
+  $('.proportion-item').on("keypress", function(event) {
+    return event.keyCode != 13;
+  });
+  
   $(document).on('click', '.add-proportion', function(event){
     event.preventDefault();
   var value = $('.proportion-item').last().data('proportion-id') + 1
@@ -12,9 +16,6 @@ $(function(){
 
   })
 
-  $(document).on("keypress", '.proportion-item', function(event) {
-    return event.keyCode != 13;
-  });
 
   $(document).on('ajax:success', '.add-proportion-from-show-js', function(e, data, status, xhr){
     var quantity = data.quantity;
