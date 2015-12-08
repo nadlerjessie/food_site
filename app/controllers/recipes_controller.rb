@@ -31,6 +31,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe.view_count += 1
     @recipe_view_object = RecipeViewObject.new(@recipe)
     @proportions = @recipe.proportions.sort
     @steps = @recipe.steps.sort
