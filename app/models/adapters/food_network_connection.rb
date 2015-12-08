@@ -16,9 +16,6 @@ module Adapters
           nil
         end
       end
-      # binding.pry
-      # read_url = open(url)
-      # recipe = Nokogiri::HTML(read_url)
     end
 
     def get_proportions(recipe)
@@ -41,13 +38,13 @@ module Adapters
       if recipe.css('.single-photo-recipe a.ico-wrap img').any?
         recipe.css('.single-photo-recipe a.ico-wrap img').attr('src').value
       else
-        "default_photo.jpg"
+        nil
       end
     end
 
     def get_recipe(url)
       recipe = scrape(url)
-      if recipe
+      if recipe && get_image(recipe)
         [get_name(recipe), get_proportions(recipe), get_steps(recipe), get_categories(recipe), get_image(recipe)]
       else
         nil

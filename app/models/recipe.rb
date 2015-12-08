@@ -52,7 +52,7 @@ class Recipe < ActiveRecord::Base
     end
   end
 
-  def test_scrape(url)
+  def create_recipe_from_food_network_adapter(url)
     client = Adapters::RecipeClient.new
     client.create_recipe(url)
   end

@@ -33,9 +33,7 @@
 </div>
 </div>
 
-
-<% if @recipe.user%>
-  <% if current_user.id == @recipe.user.id %> 
-    <%= button_to "Delete recipe", recipe_path(recipe: @recipe), method: :delete, data: {confirm: "Are you sure?"}%>
-  <% end %>
+<% if current_user == @recipe.user %>
+  <%= button_to "Delete recipe", recipe_path(recipe: @recipe), method: :delete, data: {confirm: "Are you sure?"}%>
 <% end %>
+
