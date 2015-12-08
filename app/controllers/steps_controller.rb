@@ -16,11 +16,10 @@ class StepsController < ApplicationController
 
   def destroy
     step = Step.find(params[:id])
-    recipe = Recipe.find(params[:recipe_id])
-     if recipe.user_id == current_user.id 
-        steps = recipe.steps
+    @recipe = Recipe.find(params[:recipe_id])
+     if @recipe.user_id == current_user.id 
+        steps = @recipe.steps
         step.destroy
-        # redirect_to @recipe
         html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
         render json: {template: html_string}
       else
