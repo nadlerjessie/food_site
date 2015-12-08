@@ -3,7 +3,6 @@ $(function(){
     $(this).parent().children('.step-js').html(data.template)
     $(this).addClass('hide')
     $(this).parent().children('.step-js').removeClass('hide')
-
   })
 
   $(document).on('dblclick', '.step-description-js', function() {
@@ -11,3 +10,10 @@ $(function(){
     $(this).children('.step-js').addClass('hide')
   })
 })
+
+// $(function(){
+//   $(document).on('ajax:success', '.edit-step-js', function(e, data, status, xhr){
+//     $(this).parent().children('.step-js').html(data.template)
+//     // $(this).addClass('hide')
+//     $(this).parent().children('.step-js').removeClass('.step-js')
+//   })

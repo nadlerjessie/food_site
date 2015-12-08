@@ -26,9 +26,14 @@ class ProportionsController < ApplicationController
   def destroy
     proportion = Proportion.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
-    proportion.destroy
-    redirect_to @recipe
+      if @recipe.user_id == current_user.id 
+        proportion.destroy
+        redirect_to @recipe
+      else
+        redirect_to @recipe, notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
+      end
   end
+
 
   private
   def proportion_params
