@@ -31,8 +31,7 @@ $(function(){
   });
 
   // $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
-  //   debugger;
-  //   $('.proportion-show-partial-js').replaceWith($(data.template))
+  //   $('.proportion-show-partial-js').empty().append($(data.template))
   // })
 });
 
