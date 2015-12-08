@@ -1,0 +1,12 @@
+<div class='container'>
+  <div class='page-view-container'>
+    <h2>Most Viewed Recipes</h2>
+    
+    <% @most_viewed_recipes.each do |recipe| %>
+      <% recipe_view_object = RecipeViewObject.new(recipe) %>
+      <div class="recipe-image-js">
+        <%= link_to image_tag(recipe_view_object.image_url, :title => recipe_view_object.image_alt, class: 'img-polaroid', style: "width:152px;height:114px;", alt: recipe_view_object.image_alt), recipe_path(recipe)%>
+      </div>
+    <% end %>  
+  </div>
+</div>

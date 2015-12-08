@@ -51,6 +51,10 @@ class Recipe < ActiveRecord::Base
     end
   end
 
+  def self.most_viewed(num)
+    select('recipes.*').order('view_count desc').limit(num)
+  end
+
   def create_proportion(proportion, ingredient, unit)
     @proportion = self.proportions.build(proportion)
     @proportion.ingredient = Ingredient.find_or_create_by(ingredient)

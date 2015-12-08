@@ -41,7 +41,7 @@ function chartData(categories, inputData) {
 
 function getIngredientCount(callback){
   $.ajax({
-    url: '/most_common_ingredients',
+    url: '/admin/analytics',
     method: "GET",
     dataType: "JSON"
   }).success(function(data){
