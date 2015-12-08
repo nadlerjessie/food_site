@@ -1,9 +1,13 @@
 class StepsController < ApplicationController
   def update
     step = Step.find(params[:id])
-    step.update(step_params)
-    html_string = render_to_string "steps/_step", locals: {index: params['step']['index'].to_i, step: step}, layout: false
-    render json: {template: html_string}
+    if step.recipe.user_id == current_user.id 
+        step.update(step_params)
+        html_string = render_to_string "steps/_step", locals: {index: params['step']['index'].to_i, step: step}, layout: false
+        render json: {template: html_string}
+      else
+        redirect_to @recipe, notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
+      end
     # x = step.as_json
     # if request.xhr?
     #   render json: {template: x}
@@ -19,6 +23,8 @@ class StepsController < ApplicationController
       else
         redirect_to @recipe, notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
       end
+      # html_string = render_to_string "steps/_step", locals: {index: params['step']['index'].to_i, step: step}, layout: false
+      # render json: {template: html_string}
   end
 
   private
