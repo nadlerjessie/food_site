@@ -18,7 +18,7 @@ class ProportionsController < ApplicationController
       proportion.ingredient_id = Ingredient.find_or_create_by(proportion_params[:ingredient]).id
       proportion.unit_id = Unit.find_or_create_by(proportion_params[:unit]).id
       if proportion.save
-        html_string = render_to_string "proportions/_proportion", locals: {proportion: proportion}, layout: false
+        html_string = render_to_string "recipes/_proportions_show", locals: {proportions: proportions}, layout: false
         render json: {template: html_string}
       end
     else

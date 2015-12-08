@@ -10,9 +10,4 @@ $(function(){
     $(this).children('.edit-step-js').removeClass('hide')
     $(this).children('.step-js').addClass('hide')
   })
-
-  $(document).on('ajax:success', '.edit-step-js', function(e, data, status, xhr){
-    debugger;
-    $('.step-show-partial-js').empty().append($(data.template))
-  })
 })
