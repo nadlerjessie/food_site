@@ -13,14 +13,15 @@ class Ingredient < ActiveRecord::Base
   validates_presence_of :name
   validates_length_of :name, minimum: 1
 
-  def self.top_ten_ingredients
-  end
-
-  def self.num_of_recipes
-    # join on the recipes table and select ingredients by name, and return the number
-    # of times that ingredient appears in a recipe
-    binding.pry
-    # join(:recipes).where('ingredient.name = self.name')
+  def self.most_used
+    ascending_array = Recipe.num_of_ingredient.sort_by do |ingredient, count|
+      count
+    end
+    top_ten = ascending_array.reverse[0..9]
+    top_ten.each_with_object([]) do |ingredient, array|
+      hash = {name: ingredient[0], count: ingredient[1]}
+      array.push(hash)
+    end
   end
 
 end

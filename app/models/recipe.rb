@@ -45,7 +45,7 @@ class Recipe < ActiveRecord::Base
       count
     end
     top_ten = ascending_array.reverse[0..9]
-    x = top_ten.each_with_object([]) do |ingredient, array|
+    top_ten.each_with_object([]) do |ingredient, array|
       hash = {name: ingredient[0], count: ingredient[1]}
       array.push(hash)
     end
