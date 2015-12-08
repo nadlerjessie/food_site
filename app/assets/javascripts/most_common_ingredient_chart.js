@@ -45,7 +45,6 @@ function getIngredientCount(callback){
     method: "GET",
     dataType: "JSON"
   }).success(function(data){
-    debugger; 
     callback(data.rankings);
   });
 }

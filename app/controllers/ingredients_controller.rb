@@ -5,6 +5,5 @@ class IngredientsController < ApplicationController
       format.html
       format.json {render :json => {:rankings => @rankings}}
     end
-
   end
 end
