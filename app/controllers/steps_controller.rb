@@ -5,8 +5,8 @@ class StepsController < ApplicationController
         step.update(step_params)
         html_string = render_to_string "steps/_step", locals: {index: params['step']['index'].to_i, step: step}, layout: false
         render json: {template: html_string}
-      else
-        notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
+      # else
+      #   notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
       end
     # x = step.as_json
     # if request.xhr?
@@ -16,15 +16,16 @@ class StepsController < ApplicationController
 
   def destroy
     step = Step.find(params[:id])
-    @recipe = Recipe.find(params[:recipe_id])
-     if @recipe.user_id == current_user.id 
+    recipe = Recipe.find(params[:recipe_id])
+     if recipe.user_id == current_user.id 
+        steps = recipe.steps
         step.destroy
-        redirect_to @recipe
+        # redirect_to @recipe
+        html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
+        render json: {template: html_string}
       else
         redirect_to @recipe, notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
       end
-      # html_string = render_to_string "steps/_step", locals: {index: params['step']['index'].to_i, step: step}, layout: false
-      # render json: {template: html_string}
   end
 
   private

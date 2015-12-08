@@ -9,11 +9,8 @@ $(function(){
     $(this).children('.edit-step-js').removeClass('hide')
     $(this).children('.step-js').addClass('hide')
   })
-})
 
-// $(function(){
-//   $(document).on('ajax:success', '.edit-step-js', function(e, data, status, xhr){
-//     $(this).parent().children('.step-js').html(data.template)
-//     // $(this).addClass('hide')
-//     $(this).parent().children('.step-js').removeClass('.step-js')
-//   })
+  $(document).on('ajax:success', '.edit-step-js', function(e, data, status, xhr){
+    $('.step-show-partial-js').empty().append($(data.template))
+  })
+})

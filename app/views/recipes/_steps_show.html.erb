@@ -4,12 +4,11 @@
       <%= render partial: 'steps/step', locals: {index: index, step: step}%>
     </div>
 
-
   <%# if current_user.id == @recipe.user.id %>
     <%= form_for step, html: {class: 'edit-step-js hide'}, remote: true do |f| %>
       <%= f.hidden_field :index, value: index %>
       <%= f.text_area :description %>
-      <%= link_to 'Delete', {controller: 'steps', action: 'destroy', id: step.id, recipe_id: step.recipe_id}, method: :delete , data: {confirm: "Are you sure?"}%>
+      <%= link_to 'Delete', {controller: 'steps', action: 'destroy', id: step.id, recipe_id: step.recipe_id}, method: :delete , data: {confirm: "Are you sure?"}, remote: true%>
         <%= f.submit "Save" %>
     <%end%>
   <%#end%>
