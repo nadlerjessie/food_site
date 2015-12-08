@@ -18,14 +18,16 @@ $(function(){
     var unit = data.unit;
     var ingredient = data.ingredient;
     var cloned_proportion = $('.proportion-js').clone().get(0);
-    var proportion_html = data.quantity + " " + data.unit + " " + data.ingredient
-    var new_proportion = "<ul class='proportion-list-js'><div class='proportion-js'><li>" + proportion_html + "</li></div></ul>"
-    $('.proportion-show-partial-js').append($(new_proportion));
+    var proportion_html = $(cloned_proportion).find('li').text(data.quantity + " " + data.unit + " " + data.ingredient);
+    $('.proportion-show-partial-js').append($(proportion_html));
+    $('li').last().wrap("<ul class='proportion-list-js'><div class='proportion-js'></div></ul>")
     var form_fields = $('.add-proportion-from-show-js').find('input:text');
     form_fields.first().val("")
     $(form_fields.get(1)).val("")
     form_fields.last().val("")
 
+    // var proportion_html = data.quantity + " " + data.unit + " " + data.ingredient
+    // var new_proportion = "<ul class='proportion-list-js'><div class='proportion-js'><li>" + proportion_html + "</li></div></ul>"
     // var proportion_html = $(cloned_proportion).find('li').text(data.quantity + " " + data.unit + " " + data.ingredient);
   });
 });
