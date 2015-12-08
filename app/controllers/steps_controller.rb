@@ -8,7 +8,7 @@ class StepsController < ApplicationController
         html_string = render_to_string "steps/_step", locals: {index: params['step']['index'].to_i, step: step}, layout: false
         render json: {template: html_string}
       else
-       html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
+        html_string = render_to_string "steps/_step", locals: {index: params['step']['index'].to_i, step: step}, layout: false
         render json: {template: html_string}
         # flash.now[:message] = "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes.
       end
@@ -24,10 +24,11 @@ class StepsController < ApplicationController
     steps = @recipe.steps
      if @recipe.user_id == current_user.id 
         step.destroy
-        html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
+        html_string = render_to_string "recipes/_steps_show", locals: {index: params['data-index-id'].to_i, steps: steps}, layout: false
+        # html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
         render json: {template: html_string}
        else
-        html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
+        html_string = render_to_string "steps/_step", locals: {index: params['data-index-id'].to_i, step: steps}, layout: false
         render json: {template: html_string}
         # flash.now[:message] = "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
       end

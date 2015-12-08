@@ -10,7 +10,7 @@ $(function(){
     $(this).children('.step-js').addClass('hide')
   })
 
-  $(document).on('ajax:success', '.edit-step-js', function(e, data, status, xhr){
-    $('.step-show-partial-js').empty().append($(data.template))
+  $(document).on('ajax:success', '.delete-step-js', function(e, data, status, xhr){
+    $(this).parent().parent().parent().html(data.template);
   })
 })

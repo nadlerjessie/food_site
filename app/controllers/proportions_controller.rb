@@ -18,6 +18,7 @@ class ProportionsController < ApplicationController
       proportion.ingredient_id = Ingredient.find_or_create_by(proportion_params[:ingredient]).id
       proportion.unit_id = Unit.find_or_create_by(proportion_params[:unit]).id
       if proportion.save
+        proportions = proportions.sort
         html_string = render_to_string "recipes/_proportions_show", locals: {proportions: proportions}, layout: false
         render json: {template: html_string}
       end
@@ -41,20 +42,6 @@ class ProportionsController < ApplicationController
         # flash.now[:message] = "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
       end
   end
-
-
-
-# if @recipe.user_id == current_user.id 
-#         step.destroy
-#         html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
-#         render json: {template: html_string}
-#        else
-#         html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
-#         render json: {template: html_string}
-#         # flash.now[:message] = "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
-#       end
-#   end
-
 
 
   private
