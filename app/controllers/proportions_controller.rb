@@ -28,13 +28,30 @@ class ProportionsController < ApplicationController
   def destroy
     proportion = Proportion.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
+    binding.pry
+    proportions = @recipe.proportions
       if @recipe.user_id == current_user.id 
         proportion.destroy
-        redirect_to @recipe
+        html_string = render_to_string "recipes/_proportions_show", locals: {proportions: proportions}, layout: false
+        render json: {template: html_string}
       else
         redirect_to @recipe, notice: "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
       end
   end
+
+
+
+# if @recipe.user_id == current_user.id 
+#         step.destroy
+#         html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
+#         render json: {template: html_string}
+#        else
+#         html_string = render_to_string "recipes/_steps_show", locals: {steps: steps}, layout: false
+#         render json: {template: html_string}
+#         # flash.now[:message] = "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
+#       end
+#   end
+
 
 
   private

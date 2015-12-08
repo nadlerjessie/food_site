@@ -12,7 +12,7 @@
       <%= f.fields_for :ingredient do |field| %>
         <%= field.text_field :name, :value => @proportion_view_object.ingredient %>
       <%end%>
-      <%= link_to 'Delete', {controller: 'proportions', action: 'destroy', id: proportion.id, recipe_id: proportion.recipe_id}, method: :delete , data: {confirm: "Are you sure?"}%>
+      <%= link_to 'Delete', {controller: 'proportions', action: 'destroy', id: proportion.id, recipe_id: proportion.recipe_id}, method: :delete , data: {confirm: "Are you sure?"}, remote: true%>
       <%= f.submit "Save" %>
     <%end%>
   </ul>
