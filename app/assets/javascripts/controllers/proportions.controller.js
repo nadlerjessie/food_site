@@ -31,16 +31,7 @@ $(function(){
     form_fields.last().val("");
   });
 
-// <<<<<<< HEAD
-//   $(document).on('click', '.display-add-ingredient-form-js', function(){
-//     $('.add-proportion-from-show-js').removeClass('hide')
-//   });
-// =======
-//   // $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
-//   //   $('.proportion-show-partial-js').empty().append($(data.template))
-//   // })
-// });
-
-// >>>>>>> ajaxing_delete_update
-
+  $(document).on('click', '.display-add-ingredient-form-js', function(){
+    $('.add-proportion-from-show-js').removeClass('hide')
+  });
 });
