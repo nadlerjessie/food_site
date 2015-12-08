@@ -1,5 +1,14 @@
 class ProportionsController < ApplicationController
 
+  def create
+    recipe = Recipe.find(proportion_params[:recipe_id])
+    quantity = {quantity: proportion_params[:quantity]}
+    ingredient = proportion_params[:ingredient]
+    unit = proportion_params[:unit]
+    proportion = recipe.create_proportion(quantity, ingredient, unit)
+    render json: {quantity: quantity[:quantity], ingredient: ingredient[:name], unit: unit[:name]}
+  end
+
   def update
     proportion = Proportion.find(params[:id])
     @recipe = Recipe.find(proportion_params[:recipe_id])
