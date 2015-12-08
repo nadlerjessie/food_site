@@ -31,4 +31,8 @@ $(function(){
     form_fields.last().val("");
   });
 
+  $(document).on('click', '.display-add-ingredient-form-js', function(){
+    $('.add-proportion-from-show-js').removeClass('hide')
+  });
+
 });

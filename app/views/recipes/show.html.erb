@@ -16,16 +16,20 @@
 <%= image_tag(@recipe_view_object.image_url, class: 'img-polaroid', style: "width:304px;height:228px", alt: @recipe_view_object.image_alt)%>
 
 <div>
-<%= form_for Proportion.new, html: {class: 'add-proportion-from-show-js'}, remote: true do |f| %>
+<% if current_user == @recipe.user %>
+  <button class='display-add-ingredient-form-js'>Add Ingredient</button> 
+<% end %>
+
+<%= form_for Proportion.new, html: {class: 'add-proportion-from-show-js hide'}, remote: true do |f| %>
   <%= f.hidden_field :recipe_id, value: @recipe.id %>
-    Quantity: <%= f.text_field :quantity %>
+    <%= f.text_field :quantity, class: 'input-mini', placeholder: "Quantity" %>
   <%= f.fields_for :unit do |field| %>
-    Unit: <%= field.text_field :name %>
+    <%= field.text_field :name, class: 'input-mini', placeholder: "Unit" %>
   <% end %>
   <%= f.fields_for :ingredient do |field| %>
-    Ingredient: <%= field.text_field :name %>
+    <%= field.text_field :name, placeholder: "Ingredient" %>
   <% end %>
-  <%= f.submit "Add Ingredient" %>
+  <%= f.submit "Save" %>
 <% end %>
 </div>
 <div class='proportion-show-partial-js'><%= render partial: 'proportions_show', locals: {proportions: @proportions} %></div>
