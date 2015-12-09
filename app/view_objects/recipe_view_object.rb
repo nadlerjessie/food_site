@@ -35,6 +35,6 @@ class RecipeViewObject
   end
 
   def categories_class
-    recipe.categories.map(&:name).join(' ')
+    recipe.categories.map(&:id).join(' ')
   end
 end
