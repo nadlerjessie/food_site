@@ -1,28 +1,29 @@
 <div class="page-view-container">
  <center><h1>Recipes</h1></center>
  
-  
-    <div class='categories-checkboxes'>
+  <div class="row">
+    <div class='categories-checkboxes' style="inline-block">
       <%= collection_check_boxes :category, :category_ids, @categories, :id, :name %>
     </div>
-  
 
- <ul class="photo-grid">
-   <% @recipes.each do |recipe| %>
-      <% recipe_view_object = RecipeViewObject.new(recipe) %>
-      
-      <li class="<%= recipe_view_object.categories_class%>" >
-       <a href="<%=recipe_path(recipe)%>">
-         <figure>
-           <%= image_tag(recipe_view_object.image_url, :title => recipe_view_object.image_alt, class: 'img-polaroid', alt: recipe_view_object.image_alt)%>
-           <figcaption>
-             <p>
-               <%=recipe_view_object.image_alt%>
-             </p>
-           </figcaption>
-         </figure>
-      </a>
-     </li>
-   <%end%>
- </ul>
+
+     <ul class="photo-grid">
+       <% @recipes.each do |recipe| %>
+          <% recipe_view_object = RecipeViewObject.new(recipe) %>
+          
+          <li class="<%= recipe_view_object.categories_class%>" >
+           <a href="<%=recipe_path(recipe)%>">
+             <figure>
+               <%= image_tag(recipe_view_object.image_url, :title => recipe_view_object.image_alt, class: 'img-polaroid', alt: recipe_view_object.image_alt)%>
+               <figcaption>
+                 <p>
+                   <%=recipe_view_object.image_alt%>
+                 </p>
+               </figcaption>
+             </figure>
+          </a>
+         </li>
+       <%end%>
+     </ul>
+  </div>
 </div>
