@@ -10,7 +10,7 @@
               <div class="recipe-image-js">
                 <%= image_tag(recipe_view_object.image_url, :title => recipe_view_object.image_alt, class: 'img-polaroid', alt: recipe_view_object.image_alt)%>
                 <figcaption>
-                <p><%= recipe.favorites.size %></p>
+                <p><%= recipe.favorites.size %> <i class="fa fa-heart"></i></p>
                 </figcaption>
               </div>
             </figure>
