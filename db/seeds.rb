@@ -15,7 +15,7 @@ Unit.destroy_all
 Favorite.destroy_all
 
 #######################
-admin = User.create(name: 'Admin', email: 'admin@flatironschool.com', password: 'jeffkatz', password_confirmation: 'jeffkatz', public_profile: true, admin: true)
+admin = User.create([{name: 'Admin', email: 'admin@flatironschool.com', password: 'jeffkatz', password_confirmation: 'jeffkatz', public_profile: true, admin: true}, {name: 'Jessie', email: 'jessie@cookbook.com', password: 'jessie', password_confirmation: 'jessie', public_profile: true, admin: true}, {name: 'Amanda', email: 'jessie@cookbook.com', password: 'amanda', password_confirmation: 'amanda', public_profile: true, admin: true}, {name: 'Michael', email: 'michael@cookbook.com', password: 'michael', password_confirmation: 'michael', public_profile: true, admin: true}, {name: 'Danny', email: 'danny@cookbook.com', password: 'danny', password_confirmation: 'danny', public_profile: true, admin: true} ])
 
 ### need to set admin to public profile to false---not persisting unless true
 
