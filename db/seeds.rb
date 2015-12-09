@@ -5,6 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+
+
+
+
 User.destroy_all
 Category.destroy_all
 Ingredient.destroy_all
@@ -13,6 +20,25 @@ Recipe.destroy_all
 Step.destroy_all
 Unit.destroy_all
 Favorite.destroy_all
+State.destroy_all
+Season.destroy_all
+IngredientState.destroy_all
+
+#######################
+states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New_Hampshire','New_Jersey','New_Mexico','New_York','North_Carolina','North_Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode_Island','South_Carolina','South_Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West_Virginia','Wisconsin','Wyoming']
+
+states.each do |state|
+  State.create(name: state)
+end
+#######################
+seasons = ['EARLY JANUARY','EARLY FEBRUARY','EARLY MARCH','EARLY APRIL','EARLY MAY','EARLY JUNE','EARLY JULY','EARLY AUGUST','EARLY SEPTEMBER','EARLY OCTOBER','EARLY NOVEMBER','EARLY DECEMBER', 'LATE JANUARY','LATE FEBRUARY','LATE MARCH','LATE APRIL','LATE MAY','LATE JUNE','LATE JULY','LATE AUGUST','LATE SEPTEMBER','LATE OCTOBER','LATE NOVEMBER','LATE DECEMBER']
+
+seasons.each do |season|
+  Season.create(name: season)
+end
+#######################
+
+Adapters::StateConnection.new.page_navigation
 
 #######################
 admin = User.create(name: 'Admin', email: 'admin@flatironschool.com', password: 'jeffkatz', password_confirmation: 'jeffkatz', public_profile: true, admin: true)
@@ -94,7 +120,7 @@ ingredient17 = Ingredient.create(name: 'small shrimp, peeled, deveined and cooke
 proportion17 = gumbo.proportions.build([unit_id: units50.id, ingredient_id: ingredient17.id, quantity: 0.5])
 
 ingredient18 = Ingredient.create(name: 'smoked sausage, cut into 1/4-inch slices')
-proportion18 = gumbo.proportions.build([unit_id: units50.id, ingredient_id: ingredient18.id, quantity:1]) 
+proportion18 = gumbo.proportions.build([unit_id: units50.id, ingredient_id: ingredient18.id, quantity:1])
 
 step1 = gumbo.steps.build(description: 'Season the chicken with salt and pepper.')
 step2 = gumbo.steps.build(description: 'Heat the oil in a heavy bottomed Dutch oven over medium-high heat. Cook the chicken until browned on both sides and remove.')
@@ -117,32 +143,32 @@ omelet.categories = [categories[1]]
 
 
 ingredient20 = Ingredient.create(name: 'ripe tomato, diced')
-proportion20 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient20.id, quantity: 0.25]) 
+proportion20 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient20.id, quantity: 0.25])
 
 ingredient21 = Ingredient.create(name: 'ripe avocado, diced')
-proportion21 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient21.id, quantity: 0.25]) 
+proportion21 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient21.id, quantity: 0.25])
 
 ingredient22 = Ingredient.create(name: 'chopped fresh cilantro, (optional)')
-proportion22 = omelet.proportions.build([unit_id: units54.id, ingredient_id: ingredient22.id, quantity: 1]) 
+proportion22 = omelet.proportions.build([unit_id: units54.id, ingredient_id: ingredient22.id, quantity: 1])
 
 ingredient23 = Ingredient.create(name: 'sea salt')
-proportion23 = omelet.proportions.build([unit_id: units55.id, ingredient_id: ingredient23.id, quantity: 0.125]) 
+proportion23 = omelet.proportions.build([unit_id: units55.id, ingredient_id: ingredient23.id, quantity: 0.125])
 
 ingredient24 = Ingredient.create(name: 'Freshly ground black pepper')
-proportion24 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient24.id, quantity: nil]) 
+proportion24 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient24.id, quantity: nil])
 
 
 ingredient25 = Ingredient.create(name: 'eggs')
-proportion25 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient25.id, quantity: 2]) 
+proportion25 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient25.id, quantity: 2])
 
 ingredient26 = Ingredient.create(name: 'butter')
-proportion26 = omelet.proportions.build([unit_id: units54.id, ingredient_id: ingredient26.id, quantity: 1]) 
+proportion26 = omelet.proportions.build([unit_id: units54.id, ingredient_id: ingredient26.id, quantity: 1])
 
 ingredient27 = Ingredient.create(name: 'cooked shrimp, chopped roughly')
-proportion27 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient27.id, quantity: 3]) 
+proportion27 = omelet.proportions.build([unit_id: nil, ingredient_id: ingredient27.id, quantity: 3])
 
 ingredient28 = Ingredient.create(name: 'grated cheese (medium cheddar or Monterey jack)')
-proportion28 = omelet.proportions.build([unit_id: units53.id, ingredient_id: ingredient28.id, quantity: 0.33]) 
+proportion28 = omelet.proportions.build([unit_id: units53.id, ingredient_id: ingredient28.id, quantity: 0.33])
 
 step20 = omelet.steps.build(description: 'Toss tomato, avocado and cilantro together in a small bowl. Season to taste with salt and pepper. Set aside.')
 step21 = omelet.steps.build(description: 'Beat eggs in a separate small bowl just until whites and yolks are combined, not long enough to become frothy.')
@@ -277,4 +303,3 @@ get_food_network_links.each do |link|
   @recipe = Recipe.new
   @recipe.create_recipe_from_food_network_adapter("http://www.foodnetwork.com#{link}")
 end
-

@@ -10,6 +10,9 @@
 
 class Ingredient < ActiveRecord::Base
   has_many :proportions
+  has_many :ingredient_states
+  has_many :seasons, through: :ingredient_states
+  has_many :states, through: :ingredient_states
   validates_presence_of :name
   validates_length_of :name, minimum: 1
 
