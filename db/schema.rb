@@ -70,6 +70,11 @@ ActiveRecord::Schema.define(version: 20151209142734) do
     t.string   "note"
   end
 
+  create_table "searches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
