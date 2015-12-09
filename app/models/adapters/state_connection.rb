@@ -6,7 +6,7 @@ module Adapters
 
     def page_navigation
       states = State.all
-      states.map do |state|
+      states.each do |state|
         url = ("http://www.simplesteps.org/eat-local/state/#{state.name}")
         html = Nokogiri::HTML(open(url))
         create_ingredient_states(html, state)
