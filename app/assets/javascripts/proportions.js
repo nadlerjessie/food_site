@@ -18,6 +18,7 @@ $(document).on("keypress", '.proportion-item', function(event) {
   });
 
  /// Edit Form
+
   function resetPlaceholder () {
     $('.quantity-input-js').attr("placeholder", 'Quantity')
   };
@@ -34,10 +35,6 @@ $(document).on("keypress", '.proportion-item', function(event) {
         setTimeout(resetPlaceholder, 1000);
                return false;
     }
-  })
-
-  $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
-    $('.proportion-show-partial-js').empty().append($(data.template))
   })
 
   $(document).on('dblclick', '.proportion-list-js', function() {
