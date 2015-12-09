@@ -11,13 +11,13 @@ Rails.application.routes.draw do
   post '/recipes/new' => 'recipes#create'
   resources :users
   resources :recipes
-  
+
   get 'admin/dashboard' => 'admins#dashboard'
   get 'admin/most_viewed' => 'admins#most_viewed'
   get 'admin/most_favorited' => 'admins#most_favorited'
   get 'admin/top_ingredients' => 'admins#top_ingredients'
   # post '/recipe/:id/favorites' => 'favorites#favorited?'
-
+  get 'states/data' => 'states#data'
   get 'states/map' => 'states#map'
   resources :favorites, only: [:create, :update, :destroy]
 

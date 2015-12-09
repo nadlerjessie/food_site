@@ -1,0 +1,12 @@
+<div class="col-md-4 col-xs-offset-1" id="state_data">
+  <h3><%= state.name %></h3>
+  <br>
+  <% state.seasons.each do |season| %>
+    <h3><%= season.name %></h3>
+    <ul>
+    <%= season.ingredients.each do |ingredient| %>
+      <li><%= ingredient.name%></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>

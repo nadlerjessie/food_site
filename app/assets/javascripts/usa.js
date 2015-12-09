@@ -53,3 +53,38 @@ $(function(){
               })
       })
 });
+
+$(function(){
+
+ // $('.state-choice').on('click', function(){
+  // console.log("click");
+  //   var state = $(this).text();
+  //   displayStateInfo(state);
+  //   $('path').css('fill', 'gray');
+  //   var selector = "#" + createSlug(state);
+  //   $(selector).css("fill", "turquoise");
+  //   });
+  //
+  //
+  // $('.view_option').click(function(){
+  //   var id = this.id;
+  //   colorCodeMap(id);
+  // });
+  //
+  $('body').on('click','#reset', function(){
+    $('path').css("fill", "gray");
+    // $("#display-key").empty();
+    // $("#state_data").empty();
+    // $('#about').show();
+  })
+  //
+  // $('.dropdown-toggle').dropdown();
+  //
+  // // Fix input element click problem
+  // $('.dropdown input, .dropdown label').click(function(e) {
+  //   e.stopPropagation();
+  // });
+
+
+
+});
