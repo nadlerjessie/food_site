@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'admin/top_ingredients' => 'admins#top_ingredients'
   # post '/recipe/:id/favorites' => 'favorites#favorited?'
 
+  get 'states/map' => 'states#map'
   resources :favorites, only: [:create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
