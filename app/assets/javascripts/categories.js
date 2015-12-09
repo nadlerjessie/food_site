@@ -1,25 +1,21 @@
 $(document).ready(function() {
-  // categories-checkboxs.val()
 
   $('input:checkbox').change(function(){
-    // displays all (hidden) recipies 
-    $('.photo-grid li').hide();
-    // $('input:checkbox:not(:checked)').each(function(index, not_checked){
-    //   debugger;
-      // $('li').filter(not_checked.value).hide()
-      // //return $(this).val()
-    var checked = $('input:checkbox:checked').map(function(index, checked){
-      return "." + checked.value
-    })
+    if ($('input:checkbox:checked').length == 0) {
+      $('.photo-grid li').show();
+      console.log($('.photo-grid li:visible').length)
+    }
+    else {
+      $('.photo-grid li').hide();
+      var checked = $('input:checkbox:checked').map(function(index, checked){
+        return "." + checked.value;
+      });
 
-    $.each(checked, function(id){
-      $('li').filter(id).show();
-    })
+      $.each(checked, function(index, category_id){
+        $('li').filter(category_id).show();
+      });
+      console.log($('.photo-grid li:visible').length)
+    };
+  });
 
-
-    // $('input:checkbox:checked').each(function() {
-    //   $('li').filter("." + $(this).val()).show();
-    // });
-
-  })
 });
