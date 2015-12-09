@@ -1,29 +1,37 @@
 <div class="page-view-container">
- <center><h1>Recipes</h1></center>
- 
-  <div class="row">
-    <div class='categories-checkboxes' style="inline-block">
-      <%= collection_check_boxes :category, :category_ids, @categories, :id, :name %>
-    </div>
+  <div class="row-fluid">
 
+    <div class='span2' >
+      <div class='sidebar'>
+        <h2>Categories</h2>
+        <% @categories.each do |category| %>
+          <ul>
+            <input type='checkbox' id='<%= category.id %>' value='<%= category.id %>'> &nbsp;<%= category.name%>
+          </ul>
+        <% end %>
+      </div>
+    </div> <!-- end of col-md-3 -->
 
-     <ul class="photo-grid">
-       <% @recipes.each do |recipe| %>
+    <div class='span10'>
+      <center><h1>Recipes</h1></center>
+      <ul class="photo-grid">
+        <% @recipes.each do |recipe| %>
           <% recipe_view_object = RecipeViewObject.new(recipe) %>
-          
           <li class="<%= recipe_view_object.categories_class%>" >
-           <a href="<%=recipe_path(recipe)%>">
-             <figure>
-               <%= image_tag(recipe_view_object.image_url, :title => recipe_view_object.image_alt, class: 'img-polaroid', alt: recipe_view_object.image_alt)%>
-               <figcaption>
-                 <p>
-                   <%=recipe_view_object.image_alt%>
-                 </p>
-               </figcaption>
-             </figure>
-          </a>
-         </li>
-       <%end%>
-     </ul>
-  </div>
-</div>
+            <a href="<%=recipe_path(recipe)%>">
+              <figure>
+                <%= image_tag(recipe_view_object.image_url, :title => recipe_view_object.image_alt, class: 'img-polaroid', alt: recipe_view_object.image_alt)%>
+                <figcaption>
+                  <p>
+                    <%=recipe_view_object.image_alt%>
+                  </p>
+                </figcaption>
+              </figure>
+            </a>
+          </li>
+        <%end%>
+      </ul>
+    </div> <!-- end of col-md-9 -->
+
+  </div> <!-- end of row-fluid -->
+</div> <!-- end of page-view-container -->

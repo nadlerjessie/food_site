@@ -12,10 +12,12 @@
 .photo-grid {
 	margin: 1em auto;
 	text-align: center;
+	float: left;
 }
 
 .photo-grid li {
 	border: 5px solid white;
+	float: left;
 	display: inline-block;
 	margin: 1em;
 	width: 289px;
@@ -110,4 +112,8 @@
 	-moz-transition-delay: 100ms;
 	transition-delay: 100ms;
 	z-index: 100;
+}
+
+.categories {
+	display: inline-block;
 }
