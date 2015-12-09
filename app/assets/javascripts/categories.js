@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('page:change', function() {
 
   $('input:checkbox').change(function(){
     if ($('input:checkbox:checked').length == 0) {

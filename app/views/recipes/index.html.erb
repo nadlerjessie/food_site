@@ -2,14 +2,12 @@
   <div class="row-fluid">
 
     <div class='span2' >
-      <div class='sidebar'>
-        <% if @categories %> 
-          <h2>Categories</h2>
-          <% @categories.each do |category| %>
-            <ul>
-              <input type='checkbox' id='<%= category.id %>' value='<%= category.id %>'> &nbsp;<%= category.name%>
-            </ul>
-          <% end %>
+      <div class='sidebar'> 
+        <h2>Categories</h2>
+        <% @categories.each do |category| %>
+          <ul>
+            <input type='checkbox' id='<%= category.id %>' value='<%= category.id %>'> &nbsp;<%= category.name%>
+          </ul>
         <% end %>
       </div>
     </div> <!-- end of col-md-3 -->
