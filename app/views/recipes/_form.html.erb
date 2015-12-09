@@ -35,7 +35,9 @@
   </div>
     <br>
   <div class='categories-checkboxes checkbox-list'>
-      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+      <%= f.collection_select :category_ids, @categories, :id, :name %>
+      <%= f.collection_select :category_ids, @categories, :id, :name %>
+      <%= f.collection_select :category_ids, @categories, :id, :name %>
   </div>
   <p>
  <%= f.label :public_recipe, "Choose to make your recipe public or private" %>

@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
   end
 
   def new
+    @categories = Category.all.sort { |a, b| a.name  <=> b.name } 
     @recipe = Recipe.new
     @recipe.steps.build
     @recipe.proportions.build
