@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   skip_before_action :login_required, except: [:index]
   def index
     @recipes = Recipe.find_recipes(current_user)
+    @categories = Category.top_categories(10)
   end
 
   def new

@@ -33,4 +33,8 @@ class RecipeViewObject
       "default_photo.jpg"
     end
   end
+
+  def categories_class
+    recipe.categories.map(&:name).join(' ')
+  end
 end
