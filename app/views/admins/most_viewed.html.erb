@@ -10,7 +10,7 @@
               <div class="recipe-image-js">
                 <%= image_tag(recipe_view_object.image_url, :title => recipe_view_object.image_alt, class: 'img-polaroid', alt: recipe_view_object.image_alt)%>
                 <figcaption>
-                <p><%= recipe.view_count %></p>
+                <p>Views: <%= recipe.view_count %></p>
                 </figcaption>
               </div>
             </figure>

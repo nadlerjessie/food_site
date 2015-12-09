@@ -3,7 +3,11 @@ class Guest
     return 0
   end
 
-  def name
-    "Guest"
+  def admin
+    false
+  end
+
+  def admin
+    false
   end
 end
