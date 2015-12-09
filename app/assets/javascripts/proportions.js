@@ -6,11 +6,11 @@ $(function(){
     $('.quantity-input-js').attr("placeholder", 'Quantity')
   };
 
-  $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
-    $(this).parent().children('.proportion-js').html(data.template)
-    $(this).addClass('hide')
-    $(this).parent().children('.proportion-js').removeClass('hide')
-  })
+  // $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
+  //   $(this).parent().children('.proportion-js').html(data.template)
+  //   $(this).addClass('hide')
+  //   $(this).parent().children('.proportion-js').removeClass('hide')
+  // })
 
   $(document).on('keypress', '.quantity-input-js', function(e) {
     if (e.which != 8 && e.which != 0 && e.which !='47' && e.which != '46' && e.which != '32' && (e.which < 48 || e.which > 57)) {

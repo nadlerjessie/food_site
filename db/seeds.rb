@@ -14,13 +14,13 @@ Step.destroy_all
 Unit.destroy_all
 Favorite.destroy_all
 
-food_network_recipe = Recipe.new.create_recipe_from_food_network_adapter("http://www.foodnetwork.com/recipes/spicy-beef-chili-recipe.html")
-food_network_recipe = Recipe.new.create_recipe_from_food_network_adapter("http://www.foodnetwork.com/recipes/ina-garten/herb-coeur-a-la-creme-recipe.html")
-get_food_network_links = Adapters::FoodNetworkLinks.new.page_navigation
-get_food_network_links.each do |link|
-  @recipe = Recipe.new
-  @recipe.create_recipe_from_food_network_adapter("http://www.foodnetwork.com#{link}")
-end
+# food_network_recipe = Recipe.new.create_recipe_from_food_network_adapter("http://www.foodnetwork.com/recipes/spicy-beef-chili-recipe.html")
+# food_network_recipe = Recipe.new.create_recipe_from_food_network_adapter("http://www.foodnetwork.com/recipes/ina-garten/herb-coeur-a-la-creme-recipe.html")
+# get_food_network_links = Adapters::FoodNetworkLinks.new.page_navigation
+# get_food_network_links.each do |link|
+#   @recipe = Recipe.new
+#   @recipe.create_recipe_from_food_network_adapter("http://www.foodnetwork.com#{link}")
+# end
 
 
 #######################
