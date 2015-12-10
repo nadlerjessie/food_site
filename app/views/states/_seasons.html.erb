@@ -1,10 +1,7 @@
-<div class="col-md-4 col-xs-offset-1" id="state_data">
-  <h3><%= month %> in <%= state.name %></h3>
-  <br>
-    <h5>Ingredients</h5>
-    <ul>
-      <% ingredients.each do |ingredient| %>
-        <li><%= ingredient.name%></li>
-      <% end %>
-    </ul>
+<div id="state_data">
+  <h3><%= month %> in <%= state_name %></h3>
+  <h5>Ingredients</h5>
+  <% ingredients.each do |ingredient| %>
+    <%= ingredient.name%>
+  <% end.join(' | ') %>
 </div>

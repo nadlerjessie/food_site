@@ -20,7 +20,6 @@ $(function(){
       d3.json('/assets/us.json', function(stateData){
             var num = 0;
             var data = topojson.feature(stateData, stateData.objects.states).features;
-            debugger;
             neighbors = topojson.neighbors(stateData.objects.states.geometries);
             d3.tsv("/assets/us-state-names.tsv", function(tsv){
                   var names = {};
