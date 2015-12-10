@@ -79,4 +79,8 @@ class Recipe < ActiveRecord::Base
     client = Adapters::RecipeClient.new
     client.create_recipe(url)
   end
+
+  # def has_blank_fields?
+  #   binding.pry
+  # end
 end

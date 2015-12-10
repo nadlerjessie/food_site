@@ -26,6 +26,8 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
+      @recipe.proportions = @recipe.proportions.select{|prop| prop.id != nil}
+      binding.pry
       render 'new'
     end
   end

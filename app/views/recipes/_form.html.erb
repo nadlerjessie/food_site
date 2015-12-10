@@ -1,6 +1,16 @@
 <div class='well'>
 <%= form_for @recipe do |f| %>
-
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <% @recipe.errors.full_messages.each do |msg| %>   
+          <strong><%= msg %></strong><br>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= f.text_field :name, placeholder: 'Recipe Name' %>
   <br><br>
 
