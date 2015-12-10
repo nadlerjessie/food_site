@@ -51,7 +51,8 @@ class ProportionsController < ApplicationController
   end
 
   def proportion_update_params
-    params.require(:proportion).permit(:id, :quantity, :recipe_id, :ingredient_ids => [], :ingredient_attributes =>[:name], :unit_ids => [], :unit_attributes => [:name])
+    params.require(:proportion).permit(:id, :quantity, :recipe_id, :ingredient_ids => [], 
+      :ingredient_attributes =>[:name], :unit_ids => [], :unit_attributes => [:name])
   end
 
 end

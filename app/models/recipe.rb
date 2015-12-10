@@ -22,8 +22,6 @@ class Recipe < ActiveRecord::Base
   has_many :steps
   accepts_nested_attributes_for :steps
   accepts_nested_attributes_for :proportions
-  # accepts_nested_attributes_for :ingredients
-  # accepts_nested_attributes_for :units
   validates_presence_of :name
   validates_length_of :proportions, minimum: 1
   validates_length_of :steps, minimum: 1
@@ -58,14 +56,6 @@ class Recipe < ActiveRecord::Base
   def self.most_viewed(num)
     select('recipes.*').order('view_count desc').limit(num)
   end
-
-  # def create_proportion(proportion, ingredient, unit)
-  #   @proportion = self.proportions.build(proportion)
-  #   @proportion.ingredient = Ingredient.find_or_create_by(ingredient)
-  #   @proportion.unit = build_unit_for_recipe_proportion(unit)
-  #   @proportion.save
-  #   @proportion
-  # end
 
   def build_unit_for_recipe_proportion(unit)
     if unit[:name].length > 0
