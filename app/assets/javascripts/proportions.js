@@ -23,6 +23,7 @@ $(document).on("keypress", '.proportion-item', function(event) {
     $('.quantity-input-js').attr("placeholder", 'Quantity')
   };
 
+
   $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
     if (data.action == 'update') {
       $(this).parent().children('.proportion-js').html(data.template);
