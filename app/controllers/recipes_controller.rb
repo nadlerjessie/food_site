@@ -50,7 +50,10 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-      params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :porportion_ids => [], :proportions_attributes => [:recipe_id, :quantity, :ingredient_attributes => [:name], :unit_attributes => [:name]])
+      params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], 
+        :steps_attributes =>[:description], :prorportion_ids => [],
+         :proportions_attributes => [:recipe_id, :quantity, 
+          :ingredient_attributes => [:name], :unit_attributes => [:name]])
   end
 
   def authorized_recipe_view?(recipe)

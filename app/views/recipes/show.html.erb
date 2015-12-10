@@ -25,10 +25,10 @@
       <%= form_for Proportion.new, html: {class: 'add-proportion-from-show-js hide'}, remote: true do |f| %>
         <%= f.hidden_field :recipe_id, value: @recipe.id %>
           <%= f.text_field :quantity, class: 'input-mini', placeholder: "Quantity" %>
-        <%= f.fields_for :unit do |field| %>
+        <%= f.fields_for Unit.new do |field| %>
           <%= field.text_field :name, class: 'input-mini', placeholder: "Unit" %>
         <% end %>
-        <%= f.fields_for :ingredient do |field| %>
+        <%= f.fields_for Ingredient.new do |field| %>
           <%= field.text_field :name, placeholder: "Ingredient" %>
         <% end %>
         <%= f.submit "Save" %>

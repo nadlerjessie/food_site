@@ -2,11 +2,14 @@ class ProportionsController < ApplicationController
 
   def create
     recipe = Recipe.find(proportion_params[:recipe_id])
-    quantity = {quantity: proportion_params[:quantity]}
-    ingredient = proportion_params[:ingredient]
-    unit = proportion_params[:unit]
-    proportion = recipe.create_proportion(quantity, ingredient, unit)
-    render json: {quantity: quantity[:quantity], ingredient: ingredient[:name], unit: unit[:name]}
+    ingredient = Ingredient.find_or_create_by(proportion_params.delete(:ingredient))
+    unit = Unit.find_or_create_by(proportion_params.delete(:unit))
+    proportion = recipe.proportions.build
+    proportion.quantity = proportion_params[:quantity].to_f
+    proportion.ingredient = ingredient
+    proportion.unit = unit
+    proportion.save
+    render json: {quantity: proportion.quantity, ingredient: ingredient.name, unit: unit.name}
   end
 
   def update
@@ -44,6 +47,7 @@ class ProportionsController < ApplicationController
 
   private
   def proportion_params
-    params.require(:proportion).permit(:id, :quantity, :recipe_id, :ingredient_ids => [], :ingredient_attributes =>[:name], :unit_ids => [], :unit_attributes => [:name])
+    params.require(:proportion).permit(:recipe_id, :quantity, :ingredient => [:name], :unit => [:name])
   end
+
 end

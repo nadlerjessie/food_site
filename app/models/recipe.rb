@@ -22,8 +22,8 @@ class Recipe < ActiveRecord::Base
   has_many :steps
   accepts_nested_attributes_for :steps
   accepts_nested_attributes_for :proportions
-  accepts_nested_attributes_for :ingredients
-  accepts_nested_attributes_for :units
+  # accepts_nested_attributes_for :ingredients
+  # accepts_nested_attributes_for :units
   validates_presence_of :name
   validates_length_of :proportions, minimum: 1
   validates_length_of :steps, minimum: 1

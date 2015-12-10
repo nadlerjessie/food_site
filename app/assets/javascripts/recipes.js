@@ -10,10 +10,4 @@ $(document).ready(function(){
     $(this).next().removeClass('hide')
   });
 
-  // $('.new-recipe-form-js').on('ajax:complete', function(event, data){
-  //   if (data.responseJSON) {
-  //     $('.errors-partial').html(data.responseJSON.template);  
-  //   } 
-  // ;})
-
 })
