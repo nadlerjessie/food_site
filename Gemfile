@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'rails_12factor'
 gem "therubyracer"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "font-awesome-rails"
