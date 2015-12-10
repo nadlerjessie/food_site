@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
     @recipe.proportions.build
     @recipe.ingredients.build
     @recipe.units.build
+    @recipe.categories.build
   end
 
   def create
@@ -56,11 +57,11 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-      params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description])
+    params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :category_ids => [], :categories_attributes =>[:id])
   end
 
   def proportion_params
-     params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
+    params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
   end
 
   def authorized_recipe_view?(recipe)
