@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20151210151928) do
 
   create_table "seasons", force: :cascade do |t|
     t.string   "name"
+    t.integer  "month"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

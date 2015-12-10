@@ -31,10 +31,10 @@ states.each do |state|
   State.create(name: state)
 end
 #######################
-seasons = ['EARLY JANUARY','EARLY FEBRUARY','EARLY MARCH','EARLY APRIL','EARLY MAY','EARLY JUNE','EARLY JULY','EARLY AUGUST','EARLY SEPTEMBER','EARLY OCTOBER','EARLY NOVEMBER','EARLY DECEMBER', 'LATE JANUARY','LATE FEBRUARY','LATE MARCH','LATE APRIL','LATE MAY','LATE JUNE','LATE JULY','LATE AUGUST','LATE SEPTEMBER','LATE OCTOBER','LATE NOVEMBER','LATE DECEMBER']
+seasons = [{'EARLY JANUARY'=> '01'},{'EARLY FEBRUARY'=> '02'},{'EARLY MARCH'=> '03'},{'EARLY APRIL'=> '04'},{'EARLY MAY'=> '05'},{'EARLY JUNE'=> '06'},{'EARLY JULY'=> '07'},{'EARLY AUGUST'=> '08'},{'EARLY SEPTEMBER'=> '09'},{'EARLY OCTOBER'=> '10'},{'EARLY NOVEMBER'=> '11'},{'EARLY DECEMBER'=> '12'},{'LATE JANUARY'=> '01'},{'LATE FEBRUARY'=> '02'},{'LATE MARCH'=> '03'},{'LATE APRIL'=> '04'},{'LATE MAY'=> '05'},{'LATE JUNE'=> '06'},{'LATE JULY'=> '07'},{'LATE AUGUST'=> '08'},{'LATE SEPTEMBER'=> '09'},{'LATE OCTOBER'=> '10'},{'LATE NOVEMBER'=> '11'},{'LATE DECEMBER'=> '12'}]
 
 seasons.each do |season|
-  Season.create(name: season)
+  Season.create(name: season.keys[0], month: season.values[0])
 end
 
 #######################
