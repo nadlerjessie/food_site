@@ -59,13 +59,13 @@ class Recipe < ActiveRecord::Base
     select('recipes.*').order('view_count desc').limit(num)
   end
 
-  def create_proportion(proportion, ingredient, unit)
-    @proportion = self.proportions.build(proportion)
-    @proportion.ingredient = Ingredient.find_or_create_by(ingredient)
-    @proportion.unit = build_unit_for_recipe_proportion(unit)
-    @proportion.save
-    @proportion
-  end
+  # def create_proportion(proportion, ingredient, unit)
+  #   @proportion = self.proportions.build(proportion)
+  #   @proportion.ingredient = Ingredient.find_or_create_by(ingredient)
+  #   @proportion.unit = build_unit_for_recipe_proportion(unit)
+  #   @proportion.save
+  #   @proportion
+  # end
 
   def build_unit_for_recipe_proportion(unit)
     if unit[:name].length > 0
