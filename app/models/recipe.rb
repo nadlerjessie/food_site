@@ -82,12 +82,11 @@ class Recipe < ActiveRecord::Base
   end
 
   def categories_attributes=(params)
-    params.each do |k, v|
-      binding.pry
-      if v[:id] != ""
-        self.categories.push(Category.find v[:id])
+    params.each do |key, category_value|
+      if category_value[:id] != ""
+        self.categories.push(Category.find category_value[:id])
       end
-    end  
+    end
   end  
 
 end

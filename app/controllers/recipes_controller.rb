@@ -16,8 +16,6 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    binding.pry
-    # @recipe.categories.push(Category.find (params['recipe']['categories_attributes']['0']['id']))
     proportion_params['proportions_attributes'].each do | i, proportion |
       @ingredient = proportion_params['ingredients_attributes'][i]
       @unit = proportion_params['units_attributes'][i]
