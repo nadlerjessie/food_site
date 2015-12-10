@@ -80,4 +80,11 @@ class Recipe < ActiveRecord::Base
     client = Adapters::RecipeClient.new
     client.create_recipe(url)
   end
+
+  def categories_attributes=(params)
+    params.each do |k, v|
+      self.categories.push(Category.find v[:id])
+    end  
+  end  
+
 end
