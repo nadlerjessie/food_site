@@ -6,8 +6,6 @@ class RecipesController < ApplicationController
   end
 
   def new
-    # @categories = Category.all.sort { |a, b| a.name  <=> b.name } 
-    # @categories = Category.all.collect(&:name).sort
     @recipe = Recipe.new
     @recipe.steps.build
     @recipe.proportions.build
@@ -17,8 +15,8 @@ class RecipesController < ApplicationController
   end
 
   def create
-    binding.pry
     @recipe = Recipe.new(recipe_params)
+    @recipe.categories.push(Category.find (params['recipe']['categories_attributes']['0']['id']))
     proportion_params['proportions_attributes'].each do | i, proportion |
       @ingredient = proportion_params['ingredients_attributes'][i]
       @unit = proportion_params['units_attributes'][i]
@@ -60,7 +58,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :category_ids => [], :categories_attributes =>[:id])
+    params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description])
   end
 
   def proportion_params

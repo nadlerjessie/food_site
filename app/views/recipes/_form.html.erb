@@ -34,11 +34,13 @@
     <button class='add-description'>Add Step</button>
   </div>
     <br>
+
   <div class='categories-checkboxes checkbox-list'>
     <%= f.fields_for :categories do |category| %>
       <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] } %> ~
-      <% end %>
+    <% end %>
   </div>
+
   <p>
     <%= f.label :public_recipe, "Choose to make your recipe public or private" %>
     <%= f.select :public_recipe, [['Public', true], ['Private', false]], :prompt => 'Select' %>
