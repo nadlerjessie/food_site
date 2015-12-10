@@ -20,7 +20,7 @@ class ProportionsController < ApplicationController
       proportion.unit_id = Unit.find_or_create_by(proportion_params[:unit_attributes]).id
       if proportion.save
         html_string = render_to_string "proportions/_proportion", locals: {proportion: proportion}, layout: false
-        render json: {template: html_string}
+        render json: {template: html_string, action: 'update'}
       end
     else
       html_string = render_to_string "proportions/_proportion", locals: {proportion: proportion}, layout: false
@@ -39,7 +39,7 @@ class ProportionsController < ApplicationController
         render json: {template: html_string}
       else
         html_string = render_to_string "proportions/_proportion", locals: {proportion: proportion}, layout: false
-        render json: {template: html_string}
+        render json: {template: html_string, action: 'update'}
         # flash.now[:message] = "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
       end
   end

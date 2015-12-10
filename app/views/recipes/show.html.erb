@@ -42,7 +42,7 @@
 
 <% if @recipe.user %>
   <% if current_user == @recipe.user %>
-    <%= button_to "Delete recipe", recipe_path(recipe: @recipe), method: :delete, data: {confirm: "Are you sure?"}%>
+    <%= button_to "Delete recipe", recipe_path(recipe: @recipe), method: :delete%>
   <% end %>
 <% end %>
 
