@@ -39,7 +39,7 @@ end
 #######################
 
 Adapters::StateConnection.new.page_navigation
-
+binding.pry
 #######################
 admin = User.create(name: 'Admin', email: 'admin@flatironschool.com', password: 'jeffkatz', password_confirmation: 'jeffkatz', public_profile: true, admin: true)
 
