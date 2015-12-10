@@ -10,13 +10,14 @@ class ProportionsController < ApplicationController
   end
 
   def update
+    binding.pry
     proportion = Proportion.find(params[:id])
     @recipe = Recipe.find(proportion_params[:recipe_id])
     proportions = @recipe.proportions
     if @recipe.user_id == current_user.id 
       proportion.update(quantity: proportion_params[:quantity])
-      proportion.ingredient_id = Ingredient.find_or_create_by(proportion_params[:ingredient]).id
-      proportion.unit_id = Unit.find_or_create_by(proportion_params[:unit]).id
+      proportion.ingredient_id = Ingredient.find_or_create_by(proportion_params[:ingredient_attributes]).id
+      proportion.unit_id = Unit.find_or_create_by(proportion_params[:unit_attributes]).id
       if proportion.save
         html_string = render_to_string "proportions/_proportion", locals: {proportion: proportion}, layout: false
         render json: {template: html_string}
@@ -28,6 +29,7 @@ class ProportionsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     proportion = Proportion.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
     proportions = @recipe.proportions
@@ -45,6 +47,6 @@ class ProportionsController < ApplicationController
 
   private
   def proportion_params
-    params.require(:proportion).permit(:quantity, :recipe_id, :ingredient =>[:name], :unit => [:name])
+    params.require(:proportion).permit(:id, :quantity, :recipe_id, :ingredient_ids => [], :ingredient_attributes =>[:name], :unit_ids => [], :unit_attributes => [:name])
   end
 end

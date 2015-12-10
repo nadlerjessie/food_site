@@ -8,27 +8,29 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe.steps.build
-    @recipe.proportions.build
-    @recipe.ingredients.build
-    @recipe.units.build
+    @proportion = @recipe.proportions.build
+    @proportion.build_ingredient
+    @proportion.build_unit
   end
 
   def create
+    binding.pry
     @recipe = Recipe.new(recipe_params)
-    proportion_params['proportions_attributes'].each do | i, proportion |
-      @ingredient = proportion_params['ingredients_attributes'][i]
-      @unit = proportion_params['units_attributes'][i]
-      @recipe.create_proportion(proportion, @ingredient, @unit)
-    end
+    # proportion_params['proportions_attributes'].each do | i, proportion |
+    #   @ingredient = proportion_params['ingredients_attributes'][i]
+    #   @unit = proportion_params['units_attributes'][i]
+    #   @recipe.create_proportion(proportion, @ingredient, @unit)
+    # end
 
     @recipe.user = current_user
 
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      @recipe.proportions = @recipe.proportions.select{|prop| prop.id != nil}
       binding.pry
       render 'new'
+      # html_string = render_to_string 'recipes/_errors', locals: {recipe: @recipe}, layout: false
+      # render json: {template: html_string}
     end
   end
 
@@ -58,7 +60,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-      params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description])
+      params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :porportion_ids => [], :proportions_attributes => [:recipe_id, :quantity, :ingredient_attributes => [:name], :unit_attributes => [:name]])
   end
 
   def proportion_params

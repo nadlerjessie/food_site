@@ -1,0 +1,11 @@
+<% if recipe.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <div class="alert alert-dismissible alert-danger">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <% recipe.errors.full_messages.each do |msg| %>   
+        <strong><%= msg %></strong><br>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

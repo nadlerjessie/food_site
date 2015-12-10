@@ -16,6 +16,8 @@ class Proportion < ActiveRecord::Base
   belongs_to :ingredient
   belongs_to :recipe
   validate :ingredient_is_persisted
+  accepts_nested_attributes_for :ingredient
+  accepts_nested_attributes_for :unit
 
   private
 

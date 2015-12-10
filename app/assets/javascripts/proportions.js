@@ -3,15 +3,15 @@ $(function(){
  /// New Form
 $(document).on('click', '.add-proportion', function(event){
     event.preventDefault();
-  var value = $('.proportion-item').last().data('proportion-id') + 1
-  var html = "<div class='proportion-item' data-proportion-id=" + value + ">"
-      html += $('.proportion-item').html();
-      html += "</div>"
-      html = html.replace(/\d+/g, value)
+    var value = $('.proportion-item').last().data('proportion-id') + 1
+    var html = "<div class='proportion-item' data-proportion-id=" + value + ">"
+    html += $('.proportion-item').html();
+    html += "</div>"
+    html = html.replace(/\d+/g, value)
 
     $('.proportions-list').append(html);
 
-  })
+  });
 
 $(document).on("keypress", '.proportion-item', function(event) {
     return event.keyCode != 13;
