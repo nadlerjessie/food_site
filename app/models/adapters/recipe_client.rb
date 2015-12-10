@@ -19,6 +19,7 @@ module Adapters
       new_proportion = recipe.proportions.build
       new_proportion.quantity = 0
       new_proportion.unit = Unit.new
+      new_proportion.ingredient = Ingredient.new
       new_proportion
     end
 
