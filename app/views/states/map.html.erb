@@ -1,0 +1,23 @@
+<div class='page-view-container'>
+  <div class='row-fluid'>
+    <div class='span10'>
+      <div id='map'></div>
+    </div>
+    <div class='span2'>
+      <div id='state_data'></div>
+    </div>
+  </div>
+</div>
+<script>
+  function displayStateInfo(stateName) {
+  var url = "<%= states_data_path %>";
+    $.ajax({
+      url: url,
+      data: {'name': stateName},
+      method: "GET",
+      dataType: "JSON"
+    }).success(function(data){
+      $('#state_data').html(data.template);
+    })
+  };
+</script>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208195538) do
+ActiveRecord::Schema.define(version: 20151210151928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,34 @@ ActiveRecord::Schema.define(version: 20151208195538) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "note"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "month"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "state_season_ingredients", force: :cascade do |t|
+    t.integer  "state_season_id"
+    t.integer  "ingredient_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "state_seasons", force: :cascade do |t|
+    t.integer  "state_id"
+    t.integer  "season_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "steps", force: :cascade do |t|

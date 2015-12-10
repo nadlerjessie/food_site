@@ -10,4 +10,8 @@ class Guest
   def admin
     false
   end
+
+  def admin
+    false
+  end
 end
