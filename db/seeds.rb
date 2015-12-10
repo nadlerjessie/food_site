@@ -11,7 +11,6 @@
 
 
 
-
 User.destroy_all
 Category.destroy_all
 Ingredient.destroy_all
@@ -22,7 +21,8 @@ Unit.destroy_all
 Favorite.destroy_all
 State.destroy_all
 Season.destroy_all
-IngredientState.destroy_all
+StateSeason.destroy_all
+StateSeasonIngredient.destroy_all
 
 #######################
 states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New_Hampshire','New_Jersey','New_Mexico','New_York','North_Carolina','North_Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode_Island','South_Carolina','South_Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West_Virginia','Wisconsin','Wyoming']
@@ -36,9 +36,12 @@ seasons = ['EARLY JANUARY','EARLY FEBRUARY','EARLY MARCH','EARLY APRIL','EARLY M
 seasons.each do |season|
   Season.create(name: season)
 end
-#######################
 
+#######################
 Adapters::StateConnection.new.page_navigation
+binding.pry
+
+
 
 #######################
 admin = User.create(name: 'Admin', email: 'admin@flatironschool.com', password: 'jeffkatz', password_confirmation: 'jeffkatz', public_profile: true, admin: true)

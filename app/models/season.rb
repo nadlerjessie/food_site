@@ -1,5 +1,4 @@
 class Season < ActiveRecord::Base
-  has_many :ingredient_states
-  has_many :ingredients, through: :ingredient_states
-  has_many :states, through: :ingredient_states
+  has_many :state_seasons
+  has_many :states, through: :state_seasons
 end
