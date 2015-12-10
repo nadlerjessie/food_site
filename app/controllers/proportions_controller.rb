@@ -10,7 +10,6 @@ class ProportionsController < ApplicationController
   end
 
   def update
-    binding.pry
     proportion = Proportion.find(params[:id])
     @recipe = Recipe.find(proportion_params[:recipe_id])
     proportions = @recipe.proportions
@@ -29,7 +28,6 @@ class ProportionsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     proportion = Proportion.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
     proportions = @recipe.proportions
@@ -40,7 +38,6 @@ class ProportionsController < ApplicationController
       else
         html_string = render_to_string "proportions/_proportion", locals: {proportion: proportion}, layout: false
         render json: {template: html_string, action: 'update'}
-        # flash.now[:message] = "You don't have permission to edit this recipe. If you are the recipe owner, please log in to make changes."
       end
   end
 

@@ -80,7 +80,4 @@ class Recipe < ActiveRecord::Base
     client.create_recipe(url)
   end
 
-  # def has_blank_fields?
-  #   binding.pry
-  # end
 end
