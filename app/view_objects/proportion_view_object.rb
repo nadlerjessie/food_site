@@ -17,7 +17,9 @@ class ProportionViewObject
 
   def quantity_conversion(quantity)
     conversions = { 0.125 => "1/8", 0.25 => "1/4", 0.333 => "1/3", 0.667 => "2/3", 0.5 => "1/2", 0.75 => "3/4" }
-    if quantity.to_i == quantity
+    if quantity == 0.0
+      ""
+    elsif quantity.to_i == quantity
       quantity.to_i
     elsif conversions.keys.include?(quantity)
       conversions[quantity]

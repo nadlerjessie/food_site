@@ -22,6 +22,7 @@ class Recipe < ActiveRecord::Base
   has_many :steps
   accepts_nested_attributes_for :steps
   accepts_nested_attributes_for :proportions
+  accepts_nested_attributes_for :categories
   validates_presence_of :name
   validates_length_of :proportions, minimum: 1
   validates_length_of :steps, minimum: 1
@@ -69,5 +70,13 @@ class Recipe < ActiveRecord::Base
     client = Adapters::RecipeClient.new
     client.create_recipe(url)
   end
+
+  def categories_attributes=(params)
+    params.each do |key, category_value|
+      if category_value[:id] != ""
+        self.categories.push(Category.find category_value[:id])
+      end
+    end
+  end  
 
 end

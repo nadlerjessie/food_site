@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
     @proportion = @recipe.proportions.build
     @proportion.build_ingredient
     @proportion.build_unit
+    @recipe.categories.build
   end
 
   def create
@@ -20,6 +21,10 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
+      num_categories = @recipe.categories.length
+      (3 - num_categories).times do 
+        @recipe.categories.build
+      end
       render 'new'
     end
   end
@@ -53,7 +58,7 @@ class RecipesController < ApplicationController
       params.require(:recipe).permit(:name, :public_recipe, 
         :step_ids => [], :steps_attributes =>[:description], :prorportion_ids => [],
         :proportions_attributes => [:recipe_id, :quantity, 
-          :ingredient_attributes => [:name], :unit_attributes => [:name]])
+          :ingredient_attributes => [:name], :unit_attributes => [:name]], :category_ids => [], :categories_attributes =>[:id])
   end
 
   def authorized_recipe_view?(recipe)

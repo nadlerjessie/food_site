@@ -26,7 +26,7 @@ class ProportionsController < ApplicationController
       end
     else
       html_string = render_to_string "proportions/_proportion", locals: {proportion: proportion}, layout: false
-      render json: {template: html_string}
+      render json: {template: html_string, action: 'update'}
     end
   end
 
@@ -37,7 +37,7 @@ class ProportionsController < ApplicationController
       if @recipe.user_id == current_user.id 
         proportion.destroy
         html_string = render_to_string "recipes/_proportions_show", locals: {proportions: proportions}, layout: false
-        render json: {template: html_string}
+        render json: {template: html_string, action: 'destroy'}
       else
         html_string = render_to_string "proportions/_proportion", locals: {proportion: proportion}, layout: false
         render json: {template: html_string, action: 'update'}
