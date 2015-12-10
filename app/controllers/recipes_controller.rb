@@ -6,7 +6,8 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @categories = Category.all.sort { |a, b| a.name  <=> b.name } 
+    # @categories = Category.all.sort { |a, b| a.name  <=> b.name } 
+    # @categories = Category.all.collect(&:name).sort
     @recipe = Recipe.new
     @recipe.steps.build
     @recipe.proportions.build
@@ -59,11 +60,11 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-      params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :category_ids => [], :categories_attributes =>[:name])
+    params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :category_ids => [], :categories_attributes =>[:id])
   end
 
   def proportion_params
-     params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
+    params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
   end
 
   def authorized_recipe_view?(recipe)

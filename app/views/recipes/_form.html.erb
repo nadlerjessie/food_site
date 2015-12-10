@@ -35,14 +35,13 @@
   </div>
     <br>
   <div class='categories-checkboxes checkbox-list'>
-      <%= f.collection_select :category_ids, @categories, :id, :name, :prompt => 'Select' %> ~
-      <%= f.collection_select :category_ids, @categories, :id, :name, :prompt => 'Select' %> ~
-      <%= f.collection_select :category_ids, @categories, :id, :name, :prompt => 'Select' %> 
-      <%#= f.collection_check_boxes :category_ids, @categories, :id, :name %>
+    <%= f.fields_for :categories do |category| %>
+      <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] } %> ~
+      <% end %>
   </div>
   <p>
- <%= f.label :public_recipe, "Choose to make your recipe public or private" %>
-   <%= f.select :public_recipe, [['Public', true], ['Private', false]], :prompt => 'Select' %>
+    <%= f.label :public_recipe, "Choose to make your recipe public or private" %>
+    <%= f.select :public_recipe, [['Public', true], ['Private', false]], :prompt => 'Select' %>
  </p>
 
   <%= f.submit %>
