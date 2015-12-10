@@ -24,9 +24,14 @@ class Recipe < ActiveRecord::Base
   accepts_nested_attributes_for :proportions
   accepts_nested_attributes_for :ingredients
   accepts_nested_attributes_for :units
+  accepts_nested_attributes_for :categories
   validates_presence_of :name
   validates_length_of :proportions, minimum: 1
   validates_length_of :steps, minimum: 1
+
+  def self.most_favorited(num)
+    joins(:favorites).select('recipes.*, count(favorites.id) as fav_count').group('recipes.id').order('fav_count desc').limit(num)
+  end
 
   def self.search_by_user_permissions(search, current_user)
     joins(:ingredients).where("((lower(recipes.name) like ? OR ingredients.name like ? ) AND public_recipe = ?) OR ((lower(recipes.name) like ? OR ingredients.name like ? ) AND user_id = ?)", search, search, true, search, search, current_user.id).uniq
@@ -34,6 +39,25 @@ class Recipe < ActiveRecord::Base
 
   def self.find_recipes(current_user)
     where("public_recipe = true OR user_id = #{current_user.id}")
+  end
+
+  def self.num_of_ingredient
+    joins(:ingredients).group('ingredients.name').order('count_id desc').count('id')
+  end
+
+  def self.most_used_ingredients
+    ascending_array = Recipe.num_of_ingredient.sort_by do |ingredient, count|
+      count
+    end
+    top_ten = ascending_array.reverse[0..9]
+    top_ten.each_with_object([]) do |ingredient, array|
+      hash = {name: ingredient[0], count: ingredient[1]}
+      array.push(hash)
+    end
+  end
+
+  def self.most_viewed(num)
+    select('recipes.*').order('view_count desc').limit(num)
   end
 
   def create_proportion(proportion, ingredient, unit)
@@ -56,4 +80,13 @@ class Recipe < ActiveRecord::Base
     client = Adapters::RecipeClient.new
     client.create_recipe(url)
   end
+
+  def categories_attributes=(params)
+    params.each do |key, category_value|
+      if category_value[:id] != ""
+        self.categories.push(Category.find category_value[:id])
+      end
+    end
+  end  
+
 end

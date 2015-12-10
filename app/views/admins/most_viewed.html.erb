@@ -1,0 +1,22 @@
+<center>
+  <div class='page-view-container'>
+    <h2>Most Viewed Recipes</h2> 
+    <ul class='photo-grid'>
+      <% @most_viewed_recipes.each do |recipe| %>
+        <li>
+          <% recipe_view_object = RecipeViewObject.new(recipe) %>
+          <a href='<%= recipe_path(recipe) %>'>
+            <figure>
+              <div class="recipe-image-js">
+                <%= image_tag(recipe_view_object.image_url, :title => recipe_view_object.image_alt, class: 'img-polaroid', alt: recipe_view_object.image_alt)%>
+                <figcaption>
+                <p>Views: <%= recipe.view_count %></p>
+                </figcaption>
+              </div>
+            </figure>
+          </a>
+        </li>
+      <% end %> 
+    </ul> 
+  </div>
+</center>

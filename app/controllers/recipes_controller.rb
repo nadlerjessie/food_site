@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   skip_before_action :login_required, except: [:index]
   def index
     @recipes = Recipe.find_recipes(current_user)
+    @categories = Category.top_categories(10)
   end
 
   def new
@@ -10,6 +11,7 @@ class RecipesController < ApplicationController
     @recipe.proportions.build
     @recipe.ingredients.build
     @recipe.units.build
+    @recipe.categories.build
   end
 
   def create
@@ -31,11 +33,15 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe.view_count += 1
-    @recipe.save
-    @recipe_view_object = RecipeViewObject.new(@recipe)
-    @proportions = @recipe.proportions.sort
-    @steps = @recipe.steps.sort
+    if authorized_recipe_view?(@recipe)
+      @recipe.view_count += 1
+      @recipe.save
+      @recipe_view_object = RecipeViewObject.new(@recipe)
+      @proportions = @recipe.proportions.sort
+      @steps = @recipe.steps.sort
+    else
+      redirect_to recipes_path
+    end
   end
 
   def update
@@ -51,11 +57,14 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-      params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description])
+    params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :category_ids => [], :categories_attributes =>[:id])
   end
 
   def proportion_params
-     params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
+    params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
   end
 
+  def authorized_recipe_view?(recipe)
+    Recipe.find_recipes(current_user).include?(recipe)
+  end
 end

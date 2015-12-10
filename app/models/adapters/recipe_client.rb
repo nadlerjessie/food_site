@@ -65,7 +65,6 @@ module Adapters
     end
 
     def build_proportions(recipe, proportions)
-      conversions = { "1/8" => 0.125, "1/4" => 0.25, "1/3" => 0.333, "1/2" => 0.5, "2/3" => 0.667, "3/4" => 0.75}
       proportions.each do |proportion_array|
         new_proportion = set_proportion_with_initialized_attributes(proportion_array, recipe)
         set_proportion_attributes_by_quantity_type(proportion_array, new_proportion)

@@ -68,6 +68,8 @@ GEM
     capybara-webkit (1.7.1)
       capybara (>= 2.3.0, < 2.6.0)
       json
+    chart-js-rails (0.0.9)
+      railties (> 3.1)
     choice (0.2.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -254,6 +256,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-webkit
+  chart-js-rails
   coffee-rails (~> 4.1.0)
   factory_girl_rails (~> 4.0)
   figaro
