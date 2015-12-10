@@ -6,11 +6,11 @@ class FavoriteViewObject
     @user = user
   end
 
-  def icon_class
-    if user.favorites.where(recipe_id: recipe.id) != []
-      return 'fa fa-heart' 
+ def icon_class
+    if user.favorites.where(recipe_id: recipe.id) == []
+      'fa fa-heart-o' 
     else
-      return 'fa fa-heart-o'
+      'fa fa-heart'
     end
   end
 
