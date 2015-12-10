@@ -9,7 +9,7 @@
       <%= f.hidden_field :index, value: index %>
       <%= f.text_area :description %>
       <% if current_user == @recipe.user %>
-        <%= link_to 'Delete', {controller: 'steps', action: 'destroy', id: step.id, :'data-index-id' => index, recipe_id: step.recipe_id}, class: 'delete-step-js', method: :delete , data: {confirm: "Are you sure?"}, remote: true %>
+        <%= link_to 'Delete', {controller: 'steps', action: 'destroy', id: step.id, :'data-index-id' => index, recipe_id: step.recipe_id}, class: 'delete-step-js', method: :delete , remote: true %>
         <%end%>
         <%= f.submit "Save" %>
     <%end%>

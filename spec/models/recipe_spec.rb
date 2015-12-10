@@ -7,11 +7,6 @@ RSpec.describe Recipe, type: :model do
     let(:steps) {[FactoryGirl.build(:step)]}
     let(:name) {"Burger"}
     
-    # context '' do 
-    #   it 'scrapes' do 
-    #     recipe.test_scrape("http://www.foodnetwork.com/recipes/mario-batali/agnolotti-with-sausage-and-peas-recipe.html")
-    #   end
-    # end
     context "when the recipe doesn't have a name" do
       let(:name) {nil}
       it 'is invalid without a name' do 
@@ -66,16 +61,16 @@ RSpec.describe Recipe, type: :model do
     end
   end
 
-  describe '#create_proportion' do
-    let(:recipe) {FactoryGirl.build(:recipe)}
+  # describe '#create_proportion' do
+  #   let(:recipe) {FactoryGirl.build(:recipe)}
       
-    context 'when creating a new recipe' do
-      it 'can build a valid proportion without a quantity or unit' do
-        new_proportion = recipe.create_proportion({quantity: ''}, {name: 'burrito'}, {name: ''})
-        expect(new_proportion).to eq true
-      end
-    end
-  end
+  #   context 'when creating a new recipe' do
+  #     it 'can build a valid proportion without a quantity or unit' do
+  #       new_proportion = recipe.create_proportion({quantity: ''}, {name: 'burrito'}, {name: ''})
+  #       expect(new_proportion).to eq true
+  #     end
+  #   end
+  # end
 
   describe '.find_recipes' do
     let(:step) {FactoryGirl.create(:step)}

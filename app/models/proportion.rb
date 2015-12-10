@@ -15,5 +15,15 @@ class Proportion < ActiveRecord::Base
   belongs_to :unit
   belongs_to :ingredient
   belongs_to :recipe
-  validates_presence_of :ingredient
+  validate :ingredient_is_persisted
+  accepts_nested_attributes_for :ingredient
+  accepts_nested_attributes_for :unit
+
+  private
+
+  def ingredient_is_persisted
+    if !self.ingredient.valid?
+      self.errors[:ingredient] = "cannot be blank"
+    end
+  end
 end

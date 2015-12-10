@@ -19,7 +19,6 @@ RSpec.describe Search, type: :model do
 
       it 'can successfuly find mac and cheese in Recipe database' do
         expect(Search.for(@mac_and_cheese.name, @user)).to eq([@mac_and_cheese])
-        binding.pry
       end
 
       

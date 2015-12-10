@@ -1,6 +1,6 @@
 <div class='well'>
-<%= form_for @recipe do |f| %>
-
+<%= form_for @recipe, html: {class: 'new-recipe-form-js'} do |f| %>
+  <div class='errors-partial'><%= render partial: 'errors', locals: {recipe: @recipe} %></div>
   <%= f.text_field :name, placeholder: 'Recipe Name' %>
   <br><br>
 
@@ -8,12 +8,12 @@
     <div class='proportion-item' data-proportion-id='0'>
       <%= f.fields_for :proportions do |proportion| %>
           <%= proportion.text_field :quantity, class: "quantity-input-js", placeholder: 'Quantity' %>
-        <%= f.fields_for :units do |unit| %>
-            <%= unit.text_field :name, placeholder: 'Unit'%>
-          <%= f.fields_for :ingredients do |ingredient| %>
-              <%= ingredient.text_field :name, placeholder: 'Ingredient' %>
-          <%end%>
-        <%end%>
+          <%= proportion.fields_for :unit do |field| %>
+            <%= field.text_field :name, placeholder: "Unit" %>
+          <% end %>
+          <%= proportion.fields_for :ingredient do |field| %>
+            <%= field.text_field :name, placeholder: "Ingredient" %>
+          <% end %>
       <%end%>
     </div>
   </div>
@@ -36,15 +36,21 @@
     <br>
 
   <div class='categories-checkboxes checkbox-list'>
-    <%= f.fields_for :categories do |category| %>
-      <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] }, prompt: "Select" %> ~
+    <% if @recipe.categories.length != 1 %>
+      <%= f.fields_for :categories do |category| %>
+        <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] }, prompt: "Select" %>
+      <% end %>
+    <% else %>
+      <%= f.fields_for :categories do |category| %>
+        <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] }, prompt: "Select" %>
+      <% end %>
+      <%= f.fields_for :categories do |category| %>
+        <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] },prompt: "Select" %> 
+      <% end %>
+      <%= f.fields_for :categories do |category| %>
+        <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] }, prompt: "Select" %> 
+      <% end %>   
     <% end %>
-    <%= f.fields_for :categories do |category| %>
-      <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] },prompt: "Select" %>  ~
-    <% end %>
-    <%= f.fields_for :categories do |category| %>
-      <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] }, prompt: "Select" %> ~
-    <% end %>   
   </div>
 
   <p>

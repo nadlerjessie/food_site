@@ -3,15 +3,15 @@ $(function(){
  /// New Form
 $(document).on('click', '.add-proportion', function(event){
     event.preventDefault();
-  var value = $('.proportion-item').last().data('proportion-id') + 1
-  var html = "<div class='proportion-item' data-proportion-id=" + value + ">"
-      html += $('.proportion-item').html();
-      html += "</div>"
-      html = html.replace(/\d+/g, value)
+    var value = $('.proportion-item').last().data('proportion-id') + 1
+    var html = "<div class='proportion-item' data-proportion-id=" + value + ">"
+    html += $('.proportion-item').html();
+    html += "</div>"
+    html = html.replace(/\d+/g, value)
 
     $('.proportions-list').append(html);
 
-  })
+  });
 
 $(document).on("keypress", '.proportion-item', function(event) {
     return event.keyCode != 13;
@@ -23,11 +23,16 @@ $(document).on("keypress", '.proportion-item', function(event) {
     $('.quantity-input-js').attr("placeholder", 'Quantity')
   };
 
-  // $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
-  //   $(this).parent().children('.proportion-js').html(data.template)
-  //   $(this).addClass('hide')
-  //   $(this).parent().children('.proportion-js').removeClass('hide')
-  // })
+
+  $(document).on('ajax:success', '.edit-proportion-js', function(e, data, status, xhr){
+    if (data.action == 'update') {
+      $(this).parent().children('.proportion-js').html(data.template);
+      $(this).addClass('hide');
+      $(this).parent().children('.proportion-js').removeClass('hide');
+    } else {
+      $(this).parent().parent().html(data.template);
+    }
+  });
 
   $(document).on('keypress', '.quantity-input-js', function(e) {
     if (e.which != 8 && e.which != 0 && e.which !='47' && e.which != '46' && e.which != '32' && (e.which < 48 || e.which > 57)) {

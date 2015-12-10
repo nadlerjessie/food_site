@@ -7,7 +7,7 @@ RSpec.describe SessionsController, type: :controller do
     end  
 
     it 'expects login link to appear' do
-      expect(page).to have_selector(:link_or_button, 'Login')
+      expect(page).to have_selector(:link_or_button, 'Log In')
     end
   end
 
@@ -17,7 +17,7 @@ RSpec.describe SessionsController, type: :controller do
     end  
 
     it 'clicks Login and goes to /login' do
-      click_on('Login')
+      click_on('Log In')
       expect(current_path).to eq(login_path)
     end
 

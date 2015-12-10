@@ -8,25 +8,23 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe.steps.build
-    @recipe.proportions.build
-    @recipe.ingredients.build
-    @recipe.units.build
+    @proportion = @recipe.proportions.build
+    @proportion.build_ingredient
+    @proportion.build_unit
     @recipe.categories.build
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
-    proportion_params['proportions_attributes'].each do | i, proportion |
-      @ingredient = proportion_params['ingredients_attributes'][i]
-      @unit = proportion_params['units_attributes'][i]
-      @recipe.create_proportion(proportion, @ingredient, @unit)
-    end
-
     @recipe.user = current_user
 
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
+      num_categories = @recipe.categories.length
+      (3 - num_categories).times do 
+        @recipe.categories.build
+      end
       render 'new'
     end
   end
@@ -57,11 +55,10 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :category_ids => [], :categories_attributes =>[:id])
-  end
-
-  def proportion_params
-    params.require(:recipe).permit(:porportion_ids => [], :proportions_attributes => [:quantity], :ingredient_ids => [], :ingredients_attributes => [:name], :unit_ids => [], :units_attributes => [:name])
+      params.require(:recipe).permit(:name, :public_recipe, 
+        :step_ids => [], :steps_attributes =>[:description], :prorportion_ids => [],
+        :proportions_attributes => [:recipe_id, :quantity, 
+          :ingredient_attributes => [:name], :unit_attributes => [:name]], :category_ids => [], :categories_attributes =>[:id])
   end
 
   def authorized_recipe_view?(recipe)
