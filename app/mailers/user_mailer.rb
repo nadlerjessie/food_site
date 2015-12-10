@@ -1,9 +1,10 @@
 class UserMailer < ApplicationMailer
+  default from: "flatironfoodies@gmail.com"
 
    def welcome_email(user)
     binding.pry
     @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    @url  = 'http://www.getcookin.com'
+    mail(to: @user.email, subject: "Let's get cookin', good lookin'!")
   end
 end
