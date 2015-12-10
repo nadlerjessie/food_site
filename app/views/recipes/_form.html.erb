@@ -37,8 +37,14 @@
 
   <div class='categories-checkboxes checkbox-list'>
     <%= f.fields_for :categories do |category| %>
-      <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] } %> ~
+      <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] }, prompt: "Select" %> ~
     <% end %>
+    <%= f.fields_for :categories do |category| %>
+      <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] },prompt: "Select" %>  ~
+    <% end %>
+    <%= f.fields_for :categories do |category| %>
+      <%= category.select :id, Category.all.collect {|c| [ c.name, c.id ] }, prompt: "Select" %> ~
+    <% end %>   
   </div>
 
   <p>

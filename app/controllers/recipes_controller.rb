@@ -16,7 +16,8 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.categories.push(Category.find (params['recipe']['categories_attributes']['0']['id']))
+    binding.pry
+    # @recipe.categories.push(Category.find (params['recipe']['categories_attributes']['0']['id']))
     proportion_params['proportions_attributes'].each do | i, proportion |
       @ingredient = proportion_params['ingredients_attributes'][i]
       @unit = proportion_params['units_attributes'][i]
@@ -58,7 +59,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description])
+    params.require(:recipe).permit(:name, :public_recipe, :step_ids => [], :steps_attributes =>[:description], :category_ids => [], :categories_attributes =>[:name, :id])
   end
 
   def proportion_params
