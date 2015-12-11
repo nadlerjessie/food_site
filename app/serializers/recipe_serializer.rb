@@ -4,4 +4,6 @@ class RecipeSerializer < ActiveModel::Serializer
   has_many :proportions
   has_many :categories
   has_many :steps
+  has_many :ingredients, through: :proportions
+  has_many :units, through: :proportions
 end
