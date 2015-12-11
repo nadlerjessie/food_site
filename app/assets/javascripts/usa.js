@@ -2,7 +2,7 @@ var createSlug = function(stateName){
   return stateName.toLowerCase().split(" ").join("-");
 };
 
-$(document).on('page:change', function(){
+$(document).on('ready', function(){
 
       var width = 960;
       var height = 500;
