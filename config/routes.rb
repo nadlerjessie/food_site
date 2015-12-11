@@ -16,10 +16,15 @@ Rails.application.routes.draw do
   get 'admin/most_viewed' => 'admins#most_viewed'
   get 'admin/most_favorited' => 'admins#most_favorited'
   get 'admin/top_ingredients' => 'admins#top_ingredients'
-  # post '/recipe/:id/favorites' => 'favorites#favorited?'
   get 'states/data' => 'states#data'
   get 'states/map' => 'states#map'
   resources :favorites, only: [:create, :update, :destroy]
+
+  namespace :api do 
+    namespace :v1 do 
+      resources :recipes
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

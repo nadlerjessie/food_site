@@ -69,3 +69,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+
+# For API
+gem 'active_model_serializers'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'rails-api'
+
